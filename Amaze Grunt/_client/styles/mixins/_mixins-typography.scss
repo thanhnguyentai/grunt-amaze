@@ -1,0 +1,93 @@
+// Mixins - Typography
+// -------------------------
+
+
+// Functions
+// -------------------------
+
+@function get-type-breakpoints($type-size) {
+	@return map-get($type-sizing, $type-size);
+}
+
+@function get-type-props($type-size, $breakpoint-name) {
+	$type-breakpoints: get-type-breakpoints($type-size);
+
+	@if ($type-breakpoints != null) {
+		@return map-get($type-breakpoints, $breakpoint-name);
+	}
+	@else {
+		@warn "Type '#{$type-size}' does not exist in $type-sizing map.";
+	}
+}
+
+@function get-font-size-line-height-difference($type-size, $breakpoint-name: "small") {
+    $type-size-props-new: get-type-props($type-size, $breakpoint-name);
+
+    @if $type-size-props-new != null {
+        @return rem(map-get($type-size-props-new, "line-height") - map-get($type-size-props-new, "font-size"));
+    } @else {
+        @warn "Breakpoint '#{$breakpoint-name}' for type size '#{$type-size}' is not defined";
+    }
+}
+
+
+// Mixins
+// -------------------------
+
+@mixin type-size($type-size, $breakpoint-name: "small") {
+	$type-size-props: get-type-props($type-size, $breakpoint-name);
+
+	@if $type-size-props != null {
+		font-size: rem(map-get($type-size-props, "font-size"));
+		line-height: rem(map-get($type-size-props, "line-height"));
+	} @else {
+		@warn "Breakpoint '#{$breakpoint-name}' for type size '#{$type-size}' is not defined";
+	}
+}
+
+@mixin responsive-type-size($type-size, $default-breakpoint: "small") {
+	@include type-size($type-size, $default-breakpoint);
+
+	$type-breakpoints-map: get-type-breakpoints($type-size);
+	$type-breakpoints-keys: map-keys($type-breakpoints-map);
+
+	@each $breakpoint-name in $type-breakpoints-keys {
+		@if $breakpoint-name != $default-breakpoint and breakpoint($breakpoint-name) != null {
+			@include respond-to-min(map-get($breakpoints, $breakpoint-name)) {
+				@include type-size($type-size, $breakpoint-name);
+			}
+		}
+	}
+}
+
+@mixin hide-text {
+	font: 0/0 a;
+	color: transparent;
+	text-shadow: none;
+	background-color: transparent;
+	border: 0;
+}
+
+@mixin icon($icon-map, $type, $position:before) {
+	$val: map-get($icon-map, $type);
+
+	@if $position == before {
+		&:before {
+			@extend %icon;
+			content: $val;
+			@content;
+		}
+	}
+	@else {
+		&:after {
+			@extend %icon;
+			content: $val;
+			@content;
+		}
+	}
+}
+
+@mixin base-icon($type, $position:before) {
+	@include icon($base-icons, $type, $position);
+	font-family: $font-base-icons;
+}

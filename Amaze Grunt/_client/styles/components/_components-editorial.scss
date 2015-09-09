@@ -1,0 +1,100 @@
+
+.editorial {
+
+	$root: '.editorial';
+
+	> * {
+		margin: 0;
+		padding: 0;
+		@include get-adjusted-layout-spacing(small-connected, text--base, margin-bottom);
+	}
+
+	> *:first-child { padding-top: 0 !important; } // Can only be a heading with padding-top
+	> *:last-child { margin-bottom: 0 !important; }
+
+	/*h1, h4, h5, h6 {
+		display: none;
+	}*/
+
+	h1, h2, h3, h4, h5, h6 {
+		font-weight: normal;
+	}
+
+	// Headings
+	h1 {
+		@extend %text--xxlarge;
+		@include get-adjusted-layout-spacing(small-connected, text--xxlarge, margin-bottom);
+	}
+
+	h2 {
+		@extend %text--xlarge;
+		@include get-adjusted-layout-spacing(medium-connected, text--xlarge, padding-top);
+		@include get-adjusted-layout-spacing(small-connected, text--xlarge, margin-bottom);
+		text-align: center;
+	}
+
+	h3, .lead {
+		@extend %text--large;
+		@include get-adjusted-layout-spacing(small-connected, text--large, margin-bottom);
+		text-align: center;
+	}
+
+	ol {
+		margin-left: rem(25px);
+
+		@include respond-to-min(medium) {
+			margin-left: rem(28px);
+		}
+	}
+
+	ul {
+		margin-left: rem(20px);
+	}
+
+	li > ul {
+		@include get-adjusted-layout-spacing(small-connected, text--base, margin-top);
+	}
+
+	li {
+		@include get-adjusted-layout-spacing(small-connected, text--base, margin-bottom);
+	}
+
+	a:not(.btn) {
+		text-decoration: underline;
+
+		@include active {
+			text-decoration: none;
+		}
+	}
+
+	em, i {
+		font-style: normal;
+	}
+
+	b, strong {
+		font-weight: normal;
+	}
+
+	// Modifiers
+	&--dark {
+		color: colour(white);
+
+		a:not(.btn) {
+			@include link-dark;
+			text-decoration: underline;
+		}
+	}
+
+	&--brand {
+		color: colour(white);
+
+		a:not(.btn) {
+			@include link-brand;
+			text-decoration: underline;
+		}
+	}
+
+	.epi-editContainer > * {
+		margin-bottom: 1.375rem;
+	}
+}

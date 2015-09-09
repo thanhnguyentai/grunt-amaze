@@ -1,0 +1,11 @@
+{
+  "name": "Amaze-Grunt",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  }
+}

@@ -1,0 +1,122 @@
+// Error page styling
+// -------------------------
+
+
+.body--error {
+
+	background: black;
+
+    .site {
+        margin:0;
+        max-width: 100%;
+    }
+}
+
+
+.error {
+    overflow: hidden;
+    position: relative;
+    min-height: 100vh;
+
+    @include radial-gradient-backgrounds(dark-3);
+    @include trixel-background;
+
+    &__bg {
+        z-index: 1;
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 50vh;
+
+        @include respond-to-min(medium) {
+            position: absolute;
+            right: 0;
+            width: 50vw;
+            height: 100vh;
+            top: 0;
+        }
+
+        picture {
+            display: block;
+        }
+
+        &-image {
+            display: block;
+            width: 180%;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            @include respond-to-min(medium) {
+                width: 260%;
+            }
+        }
+
+        &-logo {
+            display: block;
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            width: 30vw;
+            height: 30vw;
+            margin-top: -15vw;
+            margin-left: -15vw;
+
+            @include respond-to-min(large) {
+                $square: 15vw;
+                width: $square;
+                height: $square;
+                margin-top: -($square/2);
+                margin-left: -($square/2);
+            }
+        }
+    }
+
+    &__container {
+        padding-left: rem($gutter);
+        padding-right: rem($gutter);
+        color: colour(white);
+        z-index: 2;
+        position: relative;
+        display: block;
+
+    }
+
+    &__message {
+        width: 80%;
+        margin-left: 10%;
+        margin-bottom: rem($gutter);
+
+        @include respond-to-min(medium) {
+            width: 50%;
+            margin-top: 37vh;
+            margin-left: 0;
+        }
+    }
+}
+
+//custom media queries only for mobile landscape
+
+@media only screen
+  and (min-width: rem(414px))
+  and (max-width: rem(736px))
+  and (orientation: landscape) {
+
+    .error__message-heading {
+        font-size: rem(35px);
+        line-height: rem(40px);
+    }
+    .error__message p {
+        font-size: rem(16px);
+        line-height: rem(24px);
+    }
+}
+
+@media only screen and (max-width: rem($breakpoint-medium - 1)) and (orientation: landscape) {
+
+    .error__message {
+        margin-top: rem(40px);
+    }
+}

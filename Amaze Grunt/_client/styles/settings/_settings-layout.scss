@@ -1,0 +1,33 @@
+// Settings - Layout
+// -------------------------
+
+$layout-max-site-width: 1400px;
+$layout-max-element-width: 1200px;
+
+$header-height: (
+	small: 85px,
+	large: 135px
+);
+
+$layout-spacing: (
+    'small': (
+        small: 50px,
+        medium: 100px
+    ),
+    'small-connected': (
+        small: 20px,
+        medium: 30px
+    ),
+    'medium-connected': (
+        small: 20px,
+        medium: 40px
+    ),
+    'large': (
+        small: 75px,
+        medium: 150px
+    ),
+    'large-connected': (
+        small: 30px,
+        medium: 50px
+    )
+);

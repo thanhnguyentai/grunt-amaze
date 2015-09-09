@@ -1,0 +1,82 @@
+// Components - Layout
+// -------------------------
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+body {
+
+    @mixin body-background($x1, $y1, $x2, $y2) {
+    	background-image:
+    		radial-gradient(circle at $x1 $y1, rgba(0, 113, 186, .2) 0%, transparent 60vw),
+    		radial-gradient(circle at $x2 $y2, rgba(142, 29, 89, .15) 0%, transparent 40vw);
+    }
+
+	&.tonal {
+
+	 	@include body-background(
+	 		rem(42px),
+	 		rem(44px),
+	 		75vw,
+	 		20vw
+	 	);
+
+		@include respond-to-min($layout-max-element-width) {
+			@include body-background(
+				calc((50% - #{rem($layout-max-element-width) / 2}) + #{rem(90px)}),
+				rem(72px),
+				calc(50% + #{rem($layout-max-element-width) / 4}),
+				20vw
+			);
+		}
+	}
+}
+
+.site {
+    margin: 0 auto;
+    min-width: rem(320px);
+
+    &__max-element-width {
+        max-width: rem($layout-max-element-width - $gutter * 2);
+        margin: 0 auto;
+    }
+
+    &--error {
+        width:100%;
+        max-width: 100%;
+    }
+}
+
+.main {
+
+    > :first-child {
+        @include get-layout-spacing('large', margin-top);
+
+        &.header-join {
+            margin-top: 0;
+        }
+    }
+}
+
+@each $layout-spacing-name in map-keys($layout-spacing) {
+
+    .vs--#{$layout-spacing-name} {
+		@include get-layout-spacing($layout-spacing-name, margin-top, margin-bottom);
+		margin-left: 0;
+		margin-right: 0;
+    }
+
+    .vsb--#{$layout-spacing-name} {
+        @include get-layout-spacing($layout-spacing-name, margin-bottom);
+    }
+
+    .vst--#{$layout-spacing-name} {
+        @include get-layout-spacing($layout-spacing-name, margin-top);
+    }
+}

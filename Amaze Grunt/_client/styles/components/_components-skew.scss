@@ -1,0 +1,40 @@
+// Components - Skew
+// -------------------------
+
+.skew {
+    position: relative;
+
+    &--padded {
+    	@include get-layout-spacing(large, padding-top, padding-bottom);
+    }
+
+	&__canvas, &__fallback {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+	}
+
+    &__canvas {
+
+        .js & {
+        	background: none;
+        }
+
+        &--image {
+			display: none;
+
+        	.js & {
+				display: block;
+        	}
+        }
+    }
+
+    .grid {
+        position: relative;
+        z-index: 2;
+    }
+}
+

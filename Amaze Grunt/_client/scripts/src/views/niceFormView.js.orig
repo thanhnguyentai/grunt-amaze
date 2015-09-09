@@ -1,0 +1,385 @@
+define(['vendor/backbone', 'modules/jitRequire', 'vendor/jquery.form', 'vendor/jquery.validate', 'vendor/jquery.validate.additional'], function (Backbone, jitRequire) {
+
+    'use strict';
+
+    var stepSelector            = ".nice-form__step",
+        navHeaderClass          = "form-nav__link",
+        activeStepHeaderClass   = "form-nav__link--is-active",
+        completeClass           = "form-nav__link--is-complete",
+        activeStepClass = "nice-form__step--is-active",
+        
+        inactiveStepClass = 'nice-form__step--is-inactive',
+        lineSel = '.nice-form__line',
+        errorMsgSel = '.nice-form__field-error';
+
+    return Backbone.View.extend({
+        events: {
+            "click .js-continue": "nextStep",
+<<<<<<< HEAD
+            "click .js-submit": "submit",
+=======
+            "submit": "submit",
+>>>>>>> 5d4fc046ca9227c27c0c7f22bdc56f380ce6c05a
+            "click .js-select-step": "navStep",
+            "step-active": "setHeight",
+            "change input[type=file]": "setFileName",
+            "focus input[type=file]": "focusFileInput",
+            "blur input[type=file]": "unfocusFileInput",
+            "focus .nice-form__field-input": "updateFieldLabel",
+            "blur .nice-form__field-input": "updateFieldLabel",
+            "keyup .nice-form__field-input": "updateFieldLabel",
+            "change select": "validateSelect",
+<<<<<<< HEAD
+            "change .nice-checkbox__input": "validateCheck",
+            "click .nice-form__file-upload .icon--arrow-right": "startUploadFile",
+            "click .nice-form__file-upload .icon--close": "removeFile"
+=======
+            "change .nice-checkbox__input": "validateCheck"
+>>>>>>> 5d4fc046ca9227c27c0c7f22bdc56f380ce6c05a
+        },
+        initialize: function (opts) {
+            this.$nav = this.generateNav(this.$el.find("fieldset legend"));
+            this.$el.prepend(this.$nav);
+            var $steps = this.$el.find(stepSelector);
+            $steps.addClass(inactiveStepClass);
+
+            if (this.$el.hasClass('nice-form--is-detached')) {
+                this.$el.one('attached', function() {
+                    this.selectStep($steps.first());
+                    this.$el.trigger('form-begin');
+                }.bind(this));
+            } else {
+                this.selectStep($steps.first());
+            }
+            
+            jQuery.validator.addMethod("isurl", function(val, elem) {
+                // if no url, don't do anything
+                if (val.length == 0) { return true; }
+ 
+                // if user has not entered http:// https:// or ftp:// assume they mean http://
+                if(!(/^(https?|s?ftp):\/\//i.test(val))) {
+                    val = 'http://'+val; // set both the value
+                }
+                // now check if valid url
+                // http://docs.jquery.com/Plugins/Validation/Methods/url
+                // contributed by Scott Gonzalez: http://projects.scottsplayground.com/iri/
+                var isValid = /^(https?|s?ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(val);
+                if (isValid) {
+                    $(elem).val(val);
+                }
+
+                return isValid;
+            });
+            
+            jQuery.validator.methods.url = function (value, element) {
+                return $.validator.methods["isurl"](value, element);
+            };
+
+            this.$el.validate({
+                errorPlacement: function ($error, $element) {
+                    $element.closest(lineSel).find(errorMsgSel).text($error.text());
+                },
+                success: function ($error, element) {
+                    $(element).next(errorMsgSel).text('');
+                },
+                validClass: 'nice-form__line--is-valid',
+                errorClass: 'nice-form__line--is-invalid',
+                ignore: '._ignore',
+                highlight: function (element, errorClass, validClass) {
+                    $(element).closest(lineSel).addClass(errorClass).removeClass(validClass);
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).closest(lineSel).addClass(validClass).removeClass(errorClass);
+                },
+                onfocusout: function (element, evt) {
+                    $(element).valid();
+                }
+            });
+
+            this.render();
+        },
+
+        generateNav: function ($legends) {
+            var $nav = $("<nav class='form-nav'>");
+            var $ol = $("<ol class='form-nav__items'>");
+            $nav.append($ol);
+            if ($legends.length > 1) {
+                $legends.each(function (idx, legend) {
+                    var $legend = $(legend),
+                        $header = $("<a class='" + navHeaderClass + " js-select-step'>"),
+                        $fieldset = $legend.closest('fieldset'),
+                        stepId = $fieldset.attr('id');
+                    $header.attr({ 'href': '#' + stepId });
+                    $header.text($legend.text());
+                    $ol.append($("<li class='form-nav__item'>").append($header));
+                });
+            } else {
+                $nav.addClass('nice-form__nav--is-empty');
+            }
+            return $nav;
+        },
+
+        selectStep: function (step) {
+            var $step = this.$el.find(step);
+            if ($step.length == 1) {
+                $step.siblings(stepSelector).css('display', 'none');
+                $step.siblings(stepSelector).removeClass(activeStepClass).addClass(inactiveStepClass);
+                $step.css('display', 'block');
+                var timeout = setTimeout(function() {
+                    $step.addClass(activeStepClass).removeClass(inactiveStepClass);
+                    clearTimeout(timeout);
+                }, 1000);
+
+                var $navHeader = this.$nav.find('[href=#' + $step[0].id + ']');
+                this.$nav.find(activeStepHeaderClass).removeClass(activeStepHeaderClass);
+                $navHeader.addClass(activeStepHeaderClass).removeClass(completeClass);
+                $step.trigger("step-active");
+            } else {
+                this.$el.trigger("step-active");
+                var self = this;
+                var timeout1 = setTimeout(function () {
+                    self.$el.addClass(activeStepClass).removeClass(inactiveStepClass);
+                    clearTimeout(timeout1);
+                }, 1000);
+            }
+            
+        },
+        validateSelect: function (evt) {
+            $(evt.currentTarget).valid();
+            this.validateContinueButton();
+        },
+        validateCheck: function (evt) {
+            $(evt.target).valid();
+            this.validateContinueButton();
+        },
+        render: function () {
+            return $.Deferred().resolve(this);
+        },
+        navStep: function (evt) {
+            evt.preventDefault();
+            evt.stopPropagation();
+            
+            var stepId = $(evt.target).attr('href');
+            var $step = this.$el.find(stepId);
+            
+            if ($step.data('validated') === true) {
+                var $currentStep = this.$el.find('.' + activeStepClass);
+                var isValid = $currentStep.validate().checkForm();
+                
+                if (isValid) {
+<<<<<<< HEAD
+                    var $stepId = $step.attr('id');
+                    var $currentId = $currentStep.attr('id');
+                    if ($stepId > $currentId && $currentId != $step.prev().attr('id') && $step.prev().data('validated') != true) {
+                        return false;
+                    }
+                    
+                    $currentStep.data('validated', true);
+                    this.$nav.find('[href=#' + $currentStep.attr("id") + "]").addClass(completeClass).removeClass(activeStepHeaderClass);
+                    this.selectStep($step);
+                } else {
+                    $currentStep.data('validated', false);
+                    if ($step.attr('id') < $currentStep.attr('id')) {
+                        this.$nav.find('[href=#' + $currentStep.attr("id") + "]").removeClass(activeStepHeaderClass);
+                        this.selectStep($step);
+                    }
+                }
+=======
+                    $currentStep.data('validated', true);
+                    this.$nav.find('[href=#' + $currentStep.attr("id") + "]").addClass(completeClass).removeClass(activeStepHeaderClass);
+                } else {
+                    $currentStep.data('validated', false);
+                    this.$nav.find('[href=#' + $currentStep.attr("id") + "]").removeClass(activeStepHeaderClass);
+                }
+                
+                this.selectStep($step);
+>>>>>>> 5d4fc046ca9227c27c0c7f22bdc56f380ce6c05a
+            }
+            
+            return false;
+        },
+        nextStep: function (evt) {
+            evt.preventDefault();
+            evt.stopPropagation();
+            
+            if ($(evt.target).hasClass('btn-inactive')) {
+                return false;
+            }
+            
+            var $currentStep = this.$el.find('.' + activeStepClass);
+            var stepId = $(evt.target).attr('href');
+
+            var isValid = $currentStep.find('input,textarea,select').valid();
+
+            if (isValid) {
+                $currentStep.data('validated', true);
+                this.$nav.find('[href=#' + $currentStep.attr("id") + "]").addClass(completeClass).removeClass(activeStepHeaderClass);
+                this.selectStep(stepId);
+            }
+            else {
+                $currentStep.data('validated', false);
+                this.$nav.find('[href=#' + $currentStep.attr("id") + "]").addClass(activeStepHeaderClass).removeClass(completeClass);
+            }
+            return false;
+        },
+        submit: function (evt) {
+            evt.preventDefault();
+            evt.stopPropagation();
+<<<<<<< HEAD
+            
+            if ($(evt.target).hasClass('btn-inactive')) {
+                return false;
+            }
+            
+=======
+>>>>>>> 5d4fc046ca9227c27c0c7f22bdc56f380ce6c05a
+            var self = this;
+            if (this.$el.valid()) {
+                this.$el.ajaxSubmit({
+                    success: function (data) {
+<<<<<<< HEAD
+                        var jqueryThank = $($("#tmplThankyou").html());
+                        var thankHtml = jqueryThank.html();
+                        self.$el.trigger('form-end', thankHtml);
+                        /*
+=======
+>>>>>>> 5d4fc046ca9227c27c0c7f22bdc56f380ce6c05a
+                        if (data.status == "success") {
+                            var jqueryThank = $($("#tmplThankyou").html());
+                            jqueryThank.find('h3').html("Thanks " + data.name);
+                            var thankHtml = jqueryThank.html();
+                            self.$el.trigger('form-end', thankHtml);
+                        } else {
+                            alert("There is an issue, please try again.");
+                        }
+<<<<<<< HEAD
+                        */
+                    },
+                    error: function () {
+                        //TODO: display error instead
+                        //alert("There is an issue, please try again.");
+                        var jqueryThank = $($("#tmplThankyou").html());
+                        var thankHtml = jqueryThank.html();
+                        self.$el.trigger('form-end', thankHtml);
+=======
+                    },
+                    error: function () {
+                        //TODO: display error instead
+                        //_self.$el.trigger('form-end', [thankHtml]);
+                        alert("There is an issue, please try again.");
+>>>>>>> 5d4fc046ca9227c27c0c7f22bdc56f380ce6c05a
+                    }
+                });
+            }
+
+            return false;
+        },
+        updateFieldLabel: function (evt) {
+            var $input = $(evt.target),
+                val = $input.val(),
+                hasVal = typeof (val) === 'string' && $.trim(val).length > 0;
+            $(evt.target).closest(lineSel)
+                         .toggleClass('nice-form__line--has-input', hasVal);
+
+            this.validateContinueButton();
+        },
+        setHeight: function (evt) {
+            var $fieldset = $(evt.target);
+            var height = $fieldset.outerHeight(true);
+            if (!!$fieldset.length) {
+                this.$el.css("height", height + "px");
+                this.$el.parent().css("height", height + "px");
+            }
+        },
+        setFileName: function (evt) {
+            var $input = $(evt.target);
+            var fileName = $input.val();
+            var $lblFileName = $input.parent().find(".js-file-name");
+            var $iconFileUpdate = $input.parent().find('.icon');
+            if (!!fileName) {
+                $lblFileName.text(fileName);
+                $iconFileUpdate.addClass('icon--close').removeClass('icon--arrow-right');
+            }
+            else {
+                $lblFileName.text($lblFileName.attr('data-msg-no-file'));
+                $iconFileUpdate.removeClass('icon--close').addClass('icon--arrow-right');
+<<<<<<< HEAD
+=======
+            }
+            
+            this.validateContinueButton();
+        },
+        focusFileInput: function (evt) {
+            var $containerFileUpload = $(evt.target).parent();
+            $containerFileUpload.addClass('btn-active');
+        },
+        unfocusFileInput: function(evt) {
+            var $containerFileUpload = $(evt.target).parent();
+            $containerFileUpload.removeClass('btn-active');
+            this.validateContinueButton();
+        },
+        validateContinueButton: function () {
+            var $currentStep = this.$el.find('.' + activeStepClass);
+            var isValid = true;
+            var validator = this.$el.validate();
+            var checkTags = $currentStep.find('select,input,textarea');
+            for (var i = 0; i < checkTags.length; i++) {
+                isValid = validator.check(checkTags.eq(i)) && isValid;
+            }
+            
+            if (isValid) {
+                $currentStep.find('a.js-continue').removeClass('btn-inactive');
+                $currentStep.find('.js-submit').removeClass('btn-inactive');
+            } else {
+                $currentStep.find('a.js-continue').addClass('btn-inactive');
+                $currentStep.find('.js-submit').addClass('btn-inactive');
+>>>>>>> 5d4fc046ca9227c27c0c7f22bdc56f380ce6c05a
+            }
+            
+            this.validateContinueButton();
+        },
+        focusFileInput: function (evt) {
+            var $containerFileUpload = $(evt.target).parent();
+            $containerFileUpload.addClass('btn-active');
+        },
+        unfocusFileInput: function(evt) {
+            var $containerFileUpload = $(evt.target).parent();
+            $containerFileUpload.removeClass('btn-active');
+            this.validateContinueButton();
+        },
+        validateContinueButton: function () {
+            var $currentStep = this.$el.find('.' + activeStepClass);
+            var isValid = true;
+            var validator = this.$el.validate();
+            var checkTags = $currentStep.find('select,input,textarea');
+            for (var i = 0; i < checkTags.length; i++) {
+                isValid = validator.check(checkTags.eq(i)) && isValid;
+            }
+            
+            if (isValid) {
+                $currentStep.find('a.js-continue').removeClass('btn-inactive');
+                $currentStep.find('.js-submit').removeClass('btn-inactive');
+            } else {
+                $currentStep.find('a.js-continue').addClass('btn-inactive');
+                $currentStep.find('.js-submit').addClass('btn-inactive');
+            }
+        },
+        startUploadFile: function (evt) {
+            var $button = $(evt.target);
+            var $inputFile = $button.parent().find('input[type=file]');
+            $inputFile.trigger('click');
+        },
+        removeFile: function (evt) {
+            var $button = $(evt.target);
+            var $inputFile = $button.parent().find('input[type=file]');
+            var $lblFileName = $button.parent().find(".js-file-name");
+            var $iconFileUpdate = $button.parent().find('.icon');
+
+            $inputFile.val('');
+            $lblFileName.text($lblFileName.attr('data-msg-no-file'));
+            $iconFileUpdate.removeClass('icon--close').addClass('icon--arrow-right');
+
+            this.validateContinueButton();
+        }
+    });
+});

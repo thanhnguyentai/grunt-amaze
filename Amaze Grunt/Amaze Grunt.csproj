@@ -1,0 +1,741 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CC3F9C37-EFD5-472B-90F8-CCCC5D5FD74B}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Amaze_Grunt</RootNamespace>
+    <AssemblyName>Amaze Grunt</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Static\data\articleGridBlogPage1.json" />
+    <Content Include="Static\data\articleGridBlogPage2.json" />
+    <Content Include="Static\data\articleGridBlogPage3.json" />
+    <Content Include="Static\data\articleGridNewsPage1.json" />
+    <Content Include="Static\data\articleGridNewsPage2.json" />
+    <Content Include="Static\data\articleGridNewsPage3.json" />
+    <Content Include="Static\data\gridSlider.json" />
+    <Content Include="Static\data\imageGridPage1.json" />
+    <Content Include="Static\data\imageGridPage2.json" />
+    <Content Include="Static\data\jobListings.json" />
+    <Content Include="Static\data\navigation.json" />
+    <Content Include="Static\data\partials.json" />
+    <Content Include="Static\data\searchResultPage1.json" />
+    <Content Include="Static\data\searchResultPage2.json" />
+    <Content Include="Static\data\searchResultPage3.json" />
+    <Content Include="Static\data\searchResultsEmpty.json" />
+    <Content Include="Static\data\timelineContent.json" />
+    <Content Include="Static\data\tweets.json" />
+    <Content Include="Static\data\views.json" />
+    <Content Include="Static\index.hbs" />
+    <Content Include="Static\views\careers-landing-page.hbs" />
+    <Content Include="Static\views\case-study-page.hbs" />
+    <Content Include="Static\views\contact-page.hbs" />
+    <Content Include="Static\views\error-404-page.hbs" />
+    <Content Include="Static\views\error-500-page.hbs" />
+    <Content Include="Static\views\home-page.hbs" />
+    <Content Include="Static\views\job-page.hbs" />
+    <Content Include="Static\views\news-article.hbs" />
+    <Content Include="Static\views\news-landing-page.hbs" />
+    <Content Include="Static\views\search-no-results.hbs" />
+    <Content Include="Static\views\search-results.hbs" />
+    <Content Include="Static\views\sitemap-page.hbs" />
+    <Content Include="Static\views\style-guide.hbs" />
+    <Content Include="Static\views\_example-view.hbs" />
+    <Content Include="Static\views\_layouts\error-page.hbs" />
+    <Content Include="Static\views\_layouts\partial.hbs" />
+    <Content Include="Static\views\_layouts\static.hbs" />
+    <Content Include="Static\views\_layouts\view.hbs" />
+    <Content Include="Static\views\_layouts\view.hbs.orig" />
+    <Content Include="Static\views\_partials\angle-carousel\angle-carousel.hbs" />
+    <Content Include="Static\views\_partials\angle-carousel\precompile\angle-carousel-controls.hbs" />
+    <Content Include="Static\views\_partials\angle-carousel\precompile\angle-carousel-pagination.hbs" />
+    <Content Include="Static\views\_partials\angle-carousel\precompile\angle-carousel-slide.hbs" />
+    <Content Include="Static\views\_partials\angle-carousel\precompile\angle-carousel-svg.hbs" />
+    <Content Include="Static\views\_partials\angle-carousel\precompile\angle-carousel-text.hbs" />
+    <Content Include="Static\views\_partials\angle-carousel\_angle-carousel.scss" />
+    <Content Include="Static\views\_partials\article-grid\article-grid-blog.hbs" />
+    <Content Include="Static\views\_partials\article-grid\article-grid-news.hbs" />
+    <Content Include="Static\views\_partials\article-grid\precompile\article-summary-blog-grid-item.hbs" />
+    <Content Include="Static\views\_partials\article-grid\precompile\article-summary-grid-item.hbs" />
+    <Content Include="Static\views\_partials\article-grid\precompile\tweet-grid-item.hbs" />
+    <Content Include="Static\views\_partials\article-grid\_article-grid-blog-filter-form.hbs" />
+    <Content Include="Static\views\_partials\article-grid\_article-grid-blog-filter.hbs" />
+    <Content Include="Static\views\_partials\article-grid\_article-grid-news-filter-form.hbs" />
+    <Content Include="Static\views\_partials\article-grid\_article-grid.scss" />
+    <Content Include="Static\views\_partials\article-summary\article-summary.hbs" />
+    <Content Include="Static\views\_partials\article-summary\_article-summary-case-study-item.hbs" />
+    <Content Include="Static\views\_partials\article-summary\_article-summary-indented-item.hbs" />
+    <Content Include="Static\views\_partials\article-summary\_article-summary-related-article-item.hbs" />
+    <Content Include="Static\views\_partials\article-summary\_article-summary-standard-item.hbs" />
+    <Content Include="Static\views\_partials\article-summary\_article-summary-template.hbs" />
+    <Content Include="Static\views\_partials\article-summary\_article-summary.scss" />
+    <Content Include="Static\views\_partials\article\article.hbs" />
+    <Content Include="Static\views\_partials\article\_article-case-study.hbs" />
+    <Content Include="Static\views\_partials\article\_article-with-diamond-cta.hbs" />
+    <Content Include="Static\views\_partials\article\_article-with-diamond-no-text.hbs" />
+    <Content Include="Static\views\_partials\article\_article-with-rectangle-cta.hbs" />
+    <Content Include="Static\views\_partials\brand\brand.hbs" />
+    <Content Include="Static\views\_partials\brand\precompile\brand-audio.hbs" />
+    <Content Include="Static\views\_partials\brand\precompile\brand-controls.hbs" />
+    <Content Include="Static\views\_partials\brand\precompile\brand-graphs.hbs" />
+    <Content Include="Static\views\_partials\brand\_brand.scss" />
+    <Content Include="Static\views\_partials\breadcrumb\_breadcrumb.hbs" />
+    <Content Include="Static\views\_partials\cookie-bar\cookie-bar.hbs" />
+    <Content Include="Static\views\_partials\cookie-bar\cookie-bar.scss" />
+    <Content Include="Static\views\_partials\device-showcase\device-showcase.hbs" />
+    <Content Include="Static\views\_partials\device-showcase\device-showcase.scss" />
+    <Content Include="Static\views\_partials\device-showcase\_device-showcase.hbs" />
+    <Content Include="Static\views\_partials\expanding-grid\precompile\expanding-grid-error.hbs" />
+    <Content Include="Static\views\_partials\expanding-grid\precompile\expanding-grid-modal.hbs" />
+    <Content Include="Static\views\_partials\expanding-grid\_expanding-grid.scss" />
+    <Content Include="Static\views\_partials\footer\footer.hbs" />
+    <Content Include="Static\views\_partials\footer\footer.scss" />
+    <Content Include="Static\views\_partials\forms\form-application-graduate.hbs" />
+    <Content Include="Static\views\_partials\forms\form-application-selector.hbs" />
+    <Content Include="Static\views\_partials\forms\form-application-speculative.hbs" />
+    <Content Include="Static\views\_partials\forms\form-application-standard.hbs" />
+    <Content Include="Static\views\_partials\forms\form-contact-selector.hbs" />
+    <Content Include="Static\views\_partials\forms\form-contact-standard.hbs" />
+    <Content Include="Static\views\_partials\forms\form-contact-student.hbs" />
+    <Content Include="Static\views\_partials\forms\form-contact-vacancy.hbs" />
+    <Content Include="Static\views\_partials\forms\precompile\file.hbs" />
+    <Content Include="Static\views\_partials\forms\precompile\form-complete.hbs" />
+    <Content Include="Static\views\_partials\forms\precompile\form-continue.hbs" />
+    <Content Include="Static\views\_partials\forms\precompile\form-error.hbs" />
+    <Content Include="Static\views\_partials\forms\precompile\form-nav.hbs" />
+    <Content Include="Static\views\_partials\forms\precompile\select.hbs" />
+    <Content Include="Static\views\_partials\grid-slider\grid-slider.hbs" />
+    <Content Include="Static\views\_partials\grid-slider\_grid-slider-mix-of-content.hbs" />
+    <Content Include="Static\views\_partials\grid-slider\_grid-slider-one-item.hbs" />
+    <Content Include="Static\views\_partials\grid-slider\_grid-slider-two-items.hbs" />
+    <Content Include="Static\views\_partials\grid-slider\_grid-slider.scss" />
+    <Content Include="Static\views\_partials\header\header.hbs" />
+    <Content Include="Static\views\_partials\header\_header.scss" />
+    <Content Include="Static\views\_partials\hex-loader\hex-loader.hbs" />
+    <Content Include="Static\views\_partials\hex-loader\hex-loader.scss" />
+    <Content Include="Static\views\_partials\hex-loader\precompile\hex-loader-spinner.hbs" />
+    <Content Include="Static\views\_partials\image-gallery-carousel\image-gallery-carousel.hbs" />
+    <Content Include="Static\views\_partials\image-gallery-carousel\image-gallery-carousel.scss" />
+    <Content Include="Static\views\_partials\image-gallery-carousel\_image-gallery-carousel-editorial.hbs" />
+    <Content Include="Static\views\_partials\image-gallery-carousel\_image-gallery-carousel-single.hbs" />
+    <Content Include="Static\views\_partials\image-gallery-carousel\_image-gallery-carousel-standard.hbs" />
+    <Content Include="Static\views\_partials\image-grid\image-grid.hbs" />
+    <Content Include="Static\views\_partials\image-grid\image-grid.scss" />
+    <Content Include="Static\views\_partials\image-grid\precompile\image-grid-landscape-landscape-portrait.hbs" />
+    <Content Include="Static\views\_partials\image-grid\precompile\image-grid-landscape-landscape.hbs" />
+    <Content Include="Static\views\_partials\image-grid\precompile\image-grid-landscape.hbs" />
+    <Content Include="Static\views\_partials\image-grid\precompile\image-grid-portrait-landscape-landscape.hbs" />
+    <Content Include="Static\views\_partials\image-grid\precompile\image-grid-portrait-portrait.hbs" />
+    <Content Include="Static\views\_partials\image-grid\precompile\_image-grid-landscape-image-full.hbs" />
+    <Content Include="Static\views\_partials\image-grid\precompile\_image-grid-landscape-image.hbs" />
+    <Content Include="Static\views\_partials\image-grid\precompile\_image-grid-portrait-image.hbs" />
+    <Content Include="Static\views\_partials\image-grid\precompile\_image-grid-portrait-large.hbs" />
+    <Content Include="Static\views\_partials\image-grid\_image-grid-case-study.hbs" />
+    <Content Include="Static\views\_partials\infographics-counter\infographics-counter.hbs" />
+    <Content Include="Static\views\_partials\infographics-counter\infographics-counter.scss" />
+    <Content Include="Static\views\_partials\infographics-counter\_infographics-counter-one.hbs" />
+    <Content Include="Static\views\_partials\infographics-counter\_infographics-counter-three.hbs" />
+    <Content Include="Static\views\_partials\infographics-counter\_infographics-counter-two.hbs" />
+    <Content Include="Static\views\_partials\infographics-counter\_infographics-counter-with-title.hbs" />
+    <Content Include="Static\views\_partials\infographics\infographics.hbs" />
+    <Content Include="Static\views\_partials\infographics\infographics.scss" />
+    <Content Include="Static\views\_partials\infographics\_infographics-brand-title-summary.hbs" />
+    <Content Include="Static\views\_partials\infographics\_infographics-brand.hbs" />
+    <Content Include="Static\views\_partials\infographics\_infographics-container.hbs" />
+    <Content Include="Static\views\_partials\infographics\_infographics-dark-title-summary.hbs" />
+    <Content Include="Static\views\_partials\infographics\_infographics-dark.hbs" />
+    <Content Include="Static\views\_partials\infographics\_infographics-default-title-summary.hbs" />
+    <Content Include="Static\views\_partials\infographics\_infographics-default.hbs" />
+    <Content Include="Static\views\_partials\infographics\_infographics-light-title-summary.hbs" />
+    <Content Include="Static\views\_partials\infographics\_infographics-light.hbs" />
+    <Content Include="Static\views\_partials\infographics\_infographics-trail-one-text.hbs" />
+    <Content Include="Static\views\_partials\infographics\_infographics-trail-one.hbs" />
+    <Content Include="Static\views\_partials\infographics\_infographics-trail-two-text.hbs" />
+    <Content Include="Static\views\_partials\infographics\_infographics-trail-two.hbs" />
+    <Content Include="Static\views\_partials\infographics\_our-careers-invert.hbs" />
+    <Content Include="Static\views\_partials\infographics\_our-careers.hbs" />
+    <Content Include="Static\views\_partials\infographics\_our-services-invert.hbs" />
+    <Content Include="Static\views\_partials\infographics\_our-services.hbs" />
+    <Content Include="Static\views\_partials\infographics\_our-work-invert.hbs" />
+    <Content Include="Static\views\_partials\infographics\_our-work.hbs" />
+    <Content Include="Static\views\_partials\job-detail\job-detail.hbs" />
+    <Content Include="Static\views\_partials\job-listing-item\job-listing-item.hbs" />
+    <Content Include="Static\views\_partials\job-listing-item\job-listing-item.scss" />
+    <Content Include="Static\views\_partials\job-listing\job-listing.hbs" />
+    <Content Include="Static\views\_partials\job-listing\job-listing.scss" />
+    <Content Include="Static\views\_partials\job-listing\_filter-form.hbs" />
+    <Content Include="Static\views\_partials\job-listing\_job-listing-job-landing.hbs" />
+    <Content Include="Static\views\_partials\job-listing\_job-listing-related-roles.hbs" />
+    <Content Include="Static\views\_partials\logo-grid\logo-grid.hbs" />
+    <Content Include="Static\views\_partials\logo-grid\logo-grid.scss" />
+    <Content Include="Static\views\_partials\logo-grid\_logo-grid-client.hbs" />
+    <Content Include="Static\views\_partials\logo-grid\_logo-grid-partners.hbs" />
+    <Content Include="Static\views\_partials\map\map.hbs" />
+    <Content Include="Static\views\_partials\media\media.hbs" />
+    <Content Include="Static\views\_partials\media\precompile\media-audio-controls.hbs" />
+    <Content Include="Static\views\_partials\media\precompile\media-video-controls.hbs" />
+    <Content Include="Static\views\_partials\media\_media-header-image.hbs" />
+    <Content Include="Static\views\_partials\media\_media-header-video.hbs" />
+    <Content Include="Static\views\_partials\media\_media-image.hbs" />
+    <Content Include="Static\views\_partials\media\_media-video.hbs" />
+    <Content Include="Static\views\_partials\media\_media.scss" />
+    <Content Include="Static\views\_partials\navigation\navigation.hbs" />
+    <Content Include="Static\views\_partials\navigation\_navigation-primary-nav-item.hbs" />
+    <Content Include="Static\views\_partials\navigation\_navigation-primary-nav.hbs" />
+    <Content Include="Static\views\_partials\navigation\_navigation-secondary-nav-item.hbs" />
+    <Content Include="Static\views\_partials\navigation\_navigation-secondary-nav.hbs" />
+    <Content Include="Static\views\_partials\navigation\_navigation-tray-nav-item.hbs" />
+    <Content Include="Static\views\_partials\navigation\_navigation.scss" />
+    <Content Include="Static\views\_partials\news-article\news-article.hbs" />
+    <Content Include="Static\views\_partials\next-steps\next-steps.hbs" />
+    <Content Include="Static\views\_partials\next-steps\next-steps.scss" />
+    <Content Include="Static\views\_partials\next-steps\_next-steps-double.hbs" />
+    <Content Include="Static\views\_partials\next-steps\_next-steps-single.hbs" />
+    <Content Include="Static\views\_partials\our-offices\our-offices.hbs" />
+    <Content Include="Static\views\_partials\our-offices\our-offices.scss" />
+    <Content Include="Static\views\_partials\our-offices\_our-offices.hbs" />
+    <Content Include="Static\views\_partials\partners-grid\partners-grid-article.hbs" />
+    <Content Include="Static\views\_partials\partners-grid\partners-grid.hbs" />
+    <Content Include="Static\views\_partials\partners-grid\_partners-grid.scss" />
+    <Content Include="Static\views\_partials\people-grid\people-grid-article.hbs" />
+    <Content Include="Static\views\_partials\people-grid\people-grid.hbs" />
+    <Content Include="Static\views\_partials\people-grid\_people-grid.scss" />
+    <Content Include="Static\views\_partials\related-articles\related-articles.hbs" />
+    <Content Include="Static\views\_partials\related-articles\_related-articles-carousel.hbs" />
+    <Content Include="Static\views\_partials\related-articles\_related-articles-related-content.hbs" />
+    <Content Include="Static\views\_partials\related-articles\_related-articles-related-stories.hbs" />
+    <Content Include="Static\views\_partials\related-articles\_related-articles-single.hbs" />
+    <Content Include="Static\views\_partials\related-articles\_related-articles-skew-carousel.hbs" />
+    <Content Include="Static\views\_partials\related-articles\_related-articles.scss" />
+    <Content Include="Static\views\_partials\scroll-top\precompile\scroll-top.hbs" />
+    <Content Include="Static\views\_partials\scroll-top\scroll-top.scss" />
+    <Content Include="Static\views\_partials\search-overlay\precompile\search-overlay-no-results.hbs" />
+    <Content Include="Static\views\_partials\search-overlay\precompile\search-overlay-results-item.hbs" />
+    <Content Include="Static\views\_partials\search-overlay\precompile\search-overlay-show-more.hbs" />
+    <Content Include="Static\views\_partials\search-overlay\precompile\search-overlay.hbs" />
+    <Content Include="Static\views\_partials\search-results\search-results.scss" />
+    <Content Include="Static\views\_partials\search-results\_search-no-results.hbs" />
+    <Content Include="Static\views\_partials\search-results\_search-results-categories.hbs" />
+    <Content Include="Static\views\_partials\search-results\_search-results-category.hbs" />
+    <Content Include="Static\views\_partials\search-results\_search-results.hbs" />
+    <Content Include="Static\views\_partials\search-results\_searchbox.hbs" />
+    <Content Include="Static\views\_partials\sitemap\sitemap.hbs" />
+    <Content Include="Static\views\_partials\sitemap\_sitemap.hbs" />
+    <Content Include="Static\views\_partials\sitemap\_sitemap.scss" />
+    <Content Include="Static\views\_partials\skews\skews.hbs" />
+    <Content Include="Static\views\_partials\skews\_skews-brand-article.hbs" />
+    <Content Include="Static\views\_partials\skews\_skews-brand.hbs" />
+    <Content Include="Static\views\_partials\skews\_skews-dark.hbs" />
+    <Content Include="Static\views\_partials\skews\_skews-image.hbs" />
+    <Content Include="Static\views\_partials\skews\_skews-light-bare.hbs" />
+    <Content Include="Static\views\_partials\skews\_skews-light.hbs" />
+    <Content Include="Static\views\_partials\skews\_skews-video.hbs" />
+    <Content Include="Static\views\_partials\skip-links\skip-links.hbs" />
+    <Content Include="Static\views\_partials\skip-links\_skip-links.scss" />
+    <Content Include="Static\views\_partials\style-guide\buttons.hbs" />
+    <Content Include="Static\views\_partials\style-guide\colour-gradients.hbs" />
+    <Content Include="Static\views\_partials\style-guide\layout-grid.hbs" />
+    <Content Include="Static\views\_partials\style-guide\layout-spacing.hbs" />
+    <Content Include="Static\views\_partials\style-guide\precompile\_show-more.hbs" />
+    <Content Include="Static\views\_partials\style-guide\typography.hbs" />
+    <Content Include="Static\views\_partials\style-guide\_diamond-no-text.hbs" />
+    <Content Include="Static\views\_partials\style-guide\_find-out-more-diamond.hbs" />
+    <Content Include="Static\views\_partials\style-guide\_find-out-more-rectangle.hbs" />
+    <Content Include="Static\views\_partials\style-guide\_forms.hbs" />
+    <Content Include="Static\views\_partials\style-guide\_social-share-icons-expanding-grid.hbs" />
+    <Content Include="Static\views\_partials\style-guide\_social-share-icons-news-article.hbs" />
+    <Content Include="Static\views\_partials\style-guide\_social-share-icons.hbs" />
+    <Content Include="Static\views\_partials\testimonial-carousel\testimonial-carousel.hbs" />
+    <Content Include="Static\views\_partials\testimonial-carousel\testimonial-carousel.scss" />
+    <Content Include="Static\views\_partials\testimonial-carousel\_testimonial-carousel-multiple-skew.hbs" />
+    <Content Include="Static\views\_partials\testimonial-carousel\_testimonial-carousel-multiple.hbs" />
+    <Content Include="Static\views\_partials\testimonial-carousel\_testimonial-carousel-single-skew.hbs" />
+    <Content Include="Static\views\_partials\testimonial-carousel\_testimonial-carousel-single.hbs" />
+    <Content Include="Static\views\_partials\timeline\precompile\timeline-skew.hbs" />
+    <Content Include="Static\views\_partials\timeline\precompile\_timeline.hbs" />
+    <Content Include="Static\views\_partials\timeline\timeline.hbs" />
+    <Content Include="Static\views\_partials\timeline\timeline.scss" />
+    <Content Include="Static\views\_partials\tweet\precompile\_tweet-item-partial.hbs" />
+    <Content Include="Static\views\_partials\tweet\tweet.hbs" />
+    <Content Include="Static\views\_partials\tweet\_tweet-brand.hbs" />
+    <Content Include="Static\views\_partials\tweet\_tweet-dark.hbs" />
+    <Content Include="Static\views\_partials\tweet\_tweet-footer.hbs" />
+    <Content Include="Static\views\_partials\tweet\_tweet-light.hbs" />
+    <Content Include="Static\views\_partials\tweet\_tweet-template.hbs" />
+    <Content Include="Static\views\_partials\tweet\_tweet.scss" />
+    <Content Include="Static\views\_partials\_exampleController\_example-controller.hbs" />
+    <Content Include="Static\views\_partials\_exampleController\_example-controller.scss" />
+    <Content Include="Static\views\_partials\_exampleView\_example-view.hbs" />
+    <Content Include="Static\views\_partials\_exampleView\_example-view.scss" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <Content Include="_client\fonts\AktivGrotesk_Lt-webfont.eot" />
+    <Content Include="_client\fonts\AktivGrotesk_Lt-webfont.ttf" />
+    <Content Include="_client\fonts\AktivGrotesk_Lt-webfont.woff" />
+    <Content Include="_client\fonts\AktivGrotesk_Lt-webfont.woff2" />
+    <Content Include="_client\scripts\src\views\articleGridView.js.orig" />
+    <Content Include="_client\scripts\src\views\formView.js.orig" />
+    <Content Include="_client\scripts\src\views\niceFormView.js.orig" />
+    <Content Include="_client\scripts\src\views\selectView.js.orig" />
+    <Content Include="_client\styles\components\_components-article.scss" />
+    <Content Include="_client\styles\components\_components-buttons.scss" />
+    <Content Include="_client\styles\components\_components-editorial.scss" />
+    <Content Include="_client\styles\components\_components-error-page.scss" />
+    <Content Include="_client\styles\components\_components-forms.scss" />
+    <Content Include="_client\styles\components\_components-layout.scss" />
+    <Content Include="_client\styles\components\_components-owlcarousel-custom.scss" />
+    <Content Include="_client\styles\components\_components-owlcarousel.scss" />
+    <Content Include="_client\styles\components\_components-skew.scss" />
+    <Content Include="_client\styles\components\_components-themes.scss" />
+    <Content Include="_client\styles\components\_components-typography.scss" />
+    <Content Include="_client\styles\components\_components-ui.scss" />
+    <Content Include="_client\styles\components\_components.scss" />
+    <Content Include="_client\styles\helpers\_helpers.scss" />
+    <Content Include="_client\styles\mixins\_mixins-buttons.scss" />
+    <Content Include="_client\styles\mixins\_mixins-colours.scss" />
+    <Content Include="_client\styles\mixins\_mixins-forms.scss" />
+    <Content Include="_client\styles\mixins\_mixins-layout.scss" />
+    <Content Include="_client\styles\mixins\_mixins-media.scss" />
+    <Content Include="_client\styles\mixins\_mixins-typography.scss" />
+    <Content Include="_client\styles\mixins\_mixins-ui.scss" />
+    <Content Include="_client\styles\mixins\_mixins-utils.scss" />
+    <Content Include="_client\styles\mixins\_mixins.scss" />
+    <Content Include="_client\styles\print.scss" />
+    <Content Include="_client\styles\resources\_icons.scss" />
+    <Content Include="_client\styles\resources\_resources-csswizardry-grids.scss" />
+    <Content Include="_client\styles\resources\_resources-static.scss" />
+    <Content Include="_client\styles\resources\_resources-typography.scss" />
+    <Content Include="_client\styles\resources\_resources.scss" />
+    <Content Include="_client\styles\screen.scss" />
+    <Content Include="_client\styles\settings\_settings-breakpoints.scss" />
+    <Content Include="_client\styles\settings\_settings-colours.scss" />
+    <Content Include="_client\styles\settings\_settings-controls.scss" />
+    <Content Include="_client\styles\settings\_settings-helpers.scss" />
+    <Content Include="_client\styles\settings\_settings-layout.scss" />
+    <Content Include="_client\styles\settings\_settings-transitions.scss" />
+    <Content Include="_client\styles\settings\_settings-typography.scss" />
+    <Content Include="_client\styles\settings\_settings-ui.scss" />
+    <Content Include="_client\styles\settings\_settings.scss" />
+    <Content Include="_client\styles\_normalize.scss" />
+    <Content Include="_client\styles\_partials.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config" />
+    <Content Include="_client\fonts\AktivGrotesk_Lt-webfont.svg" />
+    <Content Include="_client\images\amaze-logo.svg" />
+    <Content Include="_client\images\avatar\data_mask.png" />
+    <Content Include="_client\images\avatar\dummy.png" />
+    <Content Include="_client\images\avatar\fallback-large-hi-res.png" />
+    <Content Include="_client\images\avatar\fallback-large.png" />
+    <Content Include="_client\images\avatar\fallback-small-hi-res.png" />
+    <Content Include="_client\images\avatar\fallback-small.png" />
+    <Content Include="_client\images\avatar\gradient1.png" />
+    <Content Include="_client\images\avatar\gradient2.png" />
+    <Content Include="_client\images\avatar\gradient3.png" />
+    <Content Include="_client\images\avatar\gradient4.png" />
+    <Content Include="_client\images\avatar\gradient5.png" />
+    <Content Include="_client\images\avatar\highlight.png" />
+    <Content Include="_client\images\avatar\logo.png" />
+    <Content Include="_client\images\avatar\sheen.png" />
+    <Content Include="_client\images\brand\rotate-trixel-fill.svg" />
+    <Content Include="_client\images\brand\rotate-trixel-outline.svg" />
+    <Content Include="_client\images\DeleteIcon.png" />
+    <Content Include="_client\images\device-showcase\mobile-bg.png" />
+    <Content Include="_client\images\device-showcase\monitor-bg.png" />
+    <Content Include="_client\images\device-showcase\oculus-shadow.png" />
+    <Content Include="_client\images\device-showcase\oculus.png" />
+    <Content Include="_client\images\device-showcase\tablet-bg.png" />
+    <Content Include="_client\images\DownIcon.png" />
+    <Content Include="_client\images\EditIcon.png" />
+    <Content Include="_client\images\error-page\avatar01-1000.png" />
+    <Content Include="_client\images\error-page\avatar01.png" />
+    <Content Include="_client\images\error-page\avatar02-1000.png" />
+    <Content Include="_client\images\error-page\avatar02.png" />
+    <Content Include="_client\images\error-page\avatar03-1000.png" />
+    <Content Include="_client\images\error-page\avatar03.png" />
+    <Content Include="_client\images\error-page\avatar04-1000.png" />
+    <Content Include="_client\images\error-page\avatar04.png" />
+    <Content Include="_client\images\error-page\avatar05-1000.png" />
+    <Content Include="_client\images\error-page\avatar05.png" />
+    <Content Include="_client\images\error-page\avatar06-1000.png" />
+    <Content Include="_client\images\error-page\avatar06.png" />
+    <Content Include="_client\images\error-page\avatar07-1000.png" />
+    <Content Include="_client\images\error-page\avatar07.png" />
+    <Content Include="_client\images\error-page\avatar08-1000.png" />
+    <Content Include="_client\images\error-page\avatar08.png" />
+    <Content Include="_client\images\error-page\avatar09-1000.png" />
+    <Content Include="_client\images\error-page\avatar09.png" />
+    <Content Include="_client\images\error-page\avatar10-1000.png" />
+    <Content Include="_client\images\error-page\avatar10.png" />
+    <Content Include="_client\images\icons\._menu.svg" />
+    <Content Include="_client\images\icons\arrow-down-small.svg" />
+    <Content Include="_client\images\icons\arrow-down.svg" />
+    <Content Include="_client\images\icons\arrow-left-small.svg" />
+    <Content Include="_client\images\icons\arrow-left.svg" />
+    <Content Include="_client\images\icons\arrow-right-small.svg" />
+    <Content Include="_client\images\icons\arrow-right.svg" />
+    <Content Include="_client\images\icons\arrow-up-small.svg" />
+    <Content Include="_client\images\icons\audio.svg" />
+    <Content Include="_client\images\icons\checkbox.svg" />
+    <Content Include="_client\images\icons\close-small.svg" />
+    <Content Include="_client\images\icons\close.svg" />
+    <Content Include="_client\images\icons\comments.svg" />
+    <Content Include="_client\images\icons\container.svg" />
+    <Content Include="_client\images\icons\edit.svg" />
+    <Content Include="_client\images\icons\information-alt.svg" />
+    <Content Include="_client\images\icons\information.svg" />
+    <Content Include="_client\images\icons\linkedin.svg" />
+    <Content Include="_client\images\icons\maximise.svg" />
+    <Content Include="_client\images\icons\menu.svg" />
+    <Content Include="_client\images\icons\minimise.svg" />
+    <Content Include="_client\images\icons\more-content.svg" />
+    <Content Include="_client\images\icons\mute.svg" />
+    <Content Include="_client\images\icons\pause.svg" />
+    <Content Include="_client\images\icons\pinterest.svg" />
+    <Content Include="_client\images\icons\playvideo.svg" />
+    <Content Include="_client\images\icons\show-more.svg" />
+    <Content Include="_client\images\icons\tweet-favourite.svg" />
+    <Content Include="_client\images\icons\tweet-reply.svg" />
+    <Content Include="_client\images\icons\tweet-retweet.svg" />
+    <Content Include="_client\images\icons\twitter.svg" />
+    <Content Include="_client\images\icons\unchecked.svg" />
+    <Content Include="_client\images\icons\views.svg" />
+    <Content Include="_client\images\icons\vimeo.svg" />
+    <Content Include="_client\images\icons\youtube.svg" />
+    <Content Include="_client\images\infographic-counter-first.svg" />
+    <Content Include="_client\images\infographic-counter-second.svg" />
+    <Content Include="_client\images\infographic-counter-third.svg" />
+    <Content Include="_client\images\map\map.svg" />
+    <Content Include="_client\images\st-ives-logo.svg" />
+    <Content Include="_client\images\timeline\hexagon_blurred_light.png" />
+    <Content Include="_client\images\timeline\hexagon_grey.svg" />
+    <Content Include="_client\images\timeline\hexagon_orange.svg" />
+    <Content Include="_client\images\timeline\hexagon_white.svg" />
+    <Content Include="_client\images\timeline\hexagon_white_border.svg" />
+    <Content Include="_client\images\timeline\logos\acs.svg" />
+    <Content Include="_client\images\timeline\logos\asics.svg" />
+    <Content Include="_client\images\timeline\logos\bridgestone.svg" />
+    <Content Include="_client\images\timeline\logos\caravan-club.svg" />
+    <Content Include="_client\images\timeline\logos\carlsberg.svg" />
+    <Content Include="_client\images\timeline\logos\carlson-rezidor.svg" />
+    <Content Include="_client\images\timeline\logos\co-op.svg" />
+    <Content Include="_client\images\timeline\logos\coats.svg" />
+    <Content Include="_client\images\timeline\logos\coca-cola.svg" />
+    <Content Include="_client\images\timeline\logos\dyson.svg" />
+    <Content Include="_client\images\timeline\logos\east-coast.svg" />
+    <Content Include="_client\images\timeline\logos\henri-lloyd.svg" />
+    <Content Include="_client\images\timeline\logos\hiscox.svg" />
+    <Content Include="_client\images\timeline\logos\lexus.svg" />
+    <Content Include="_client\images\timeline\logos\nspcc.svg" />
+    <Content Include="_client\images\timeline\logos\odeon.svg" />
+    <Content Include="_client\images\timeline\logos\oxford.svg" />
+    <Content Include="_client\images\timeline\logos\pizza-hut.svg" />
+    <Content Include="_client\images\timeline\logos\radisson.svg" />
+    <Content Include="_client\images\timeline\logos\red-bull.svg" />
+    <Content Include="_client\images\timeline\logos\serco.svg" />
+    <Content Include="_client\images\timeline\logos\the-perfume-shop.svg" />
+    <Content Include="_client\images\timeline\logos\the-saucy-fish-co.svg" />
+    <Content Include="_client\images\timeline\logos\toyota.svg" />
+    <Content Include="_client\images\timeline\logos\travis-perkins.svg" />
+    <Content Include="_client\images\timeline\logos\unilever.svg" />
+    <Content Include="_client\images\timeline\logos\vw.svg" />
+    <Content Include="_client\images\timeline\logos\wacoal.svg" />
+    <Content Include="_client\images\trixel-dark.svg" />
+    <Content Include="_client\images\trixel-white.svg" />
+    <Content Include="_client\images\UpIcon.png" />
+    <Content Include="_client\images\_temp\1440-700-cats.jpg" />
+    <Content Include="_client\images\_temp\1440-700-nightlife.jpg" />
+    <Content Include="_client\images\_temp\1440-700-sports.jpg" />
+    <Content Include="_client\images\_temp\480-640-cats.jpg" />
+    <Content Include="_client\images\_temp\480-640-nightlife.jpg" />
+    <Content Include="_client\images\_temp\480-640-sports.jpg" />
+    <Content Include="_client\images\_temp\header-carousel-large-1.jpg" />
+    <Content Include="_client\images\_temp\header-carousel-large-2.jpg" />
+    <Content Include="_client\images\_temp\header-carousel-large-3.jpg" />
+    <Content Include="_client\images\_temp\header-carousel-small-1.jpg" />
+    <Content Include="_client\images\_temp\header-carousel-small-2.jpg" />
+    <Content Include="_client\images\_temp\header-carousel-small-3.jpg" />
+    <Content Include="_client\images\_temp\skews-image-large.jpg" />
+    <Content Include="_client\images\_temp\skews-image-medium.jpg" />
+    <Content Include="_client\images\_temp\skews-image-small.jpg" />
+    <Content Include="_client\scripts\lib\avatar.js" />
+    <Content Include="_client\scripts\lib\bower\backbone.hammer.js" />
+    <Content Include="_client\scripts\lib\bower\backbone.js" />
+    <Content Include="_client\scripts\lib\bower\fastclick.js" />
+    <Content Include="_client\scripts\lib\bower\hammer.js" />
+    <Content Include="_client\scripts\lib\bower\handlebars-helpers.js" />
+    <Content Include="_client\scripts\lib\bower\handlebars.js" />
+    <Content Include="_client\scripts\lib\bower\jquery.form.js" />
+    <Content Include="_client\scripts\lib\bower\jquery.hammer.js" />
+    <Content Include="_client\scripts\lib\bower\jquery.validate.additional.js" />
+    <Content Include="_client\scripts\lib\bower\jquery.validate.js" />
+    <Content Include="_client\scripts\lib\bower\lodash.js" />
+    <Content Include="_client\scripts\lib\bower\picturefill.js" />
+    <Content Include="_client\scripts\lib\bower\require.js" />
+    <Content Include="_client\scripts\lib\bower\skrollr.js" />
+    <Content Include="_client\scripts\lib\bower\velocity.js" />
+    <Content Include="_client\scripts\lib\cssplugin.js" />
+    <Content Include="_client\scripts\lib\jquery.js" />
+    <Content Include="_client\scripts\lib\lodash.js" />
+    <Content Include="_client\scripts\lib\Noodlebox3D.js" />
+    <Content Include="_client\scripts\lib\owl.carousel.js" />
+    <Content Include="_client\scripts\lib\timeline.js" />
+    <Content Include="_client\scripts\lib\tweenlite.js" />
+    <Content Include="_client\scripts\main-async.js" />
+    <Content Include="_client\scripts\main.js" />
+    <Content Include="_client\scripts\require-config.js" />
+    <Content Include="_client\scripts\src\base.js" />
+    <Content Include="_client\scripts\src\collections\angleCarouselCollection.js" />
+    <Content Include="_client\scripts\src\collections\articleGridItemsCollection.js" />
+    <Content Include="_client\scripts\src\collections\formFieldsetCollection.js" />
+    <Content Include="_client\scripts\src\collections\jobListingsCollection.js" />
+    <Content Include="_client\scripts\src\collections\searchFiltersCollection.js" />
+    <Content Include="_client\scripts\src\collections\searchResultsCollection.js" />
+    <Content Include="_client\scripts\src\controllers\angleCarouselController.js" />
+    <Content Include="_client\scripts\src\controllers\articleGridController.js" />
+    <Content Include="_client\scripts\src\controllers\blogArticleGridController.js" />
+    <Content Include="_client\scripts\src\controllers\brandController.js" />
+    <Content Include="_client\scripts\src\controllers\formController.js" />
+    <Content Include="_client\scripts\src\controllers\headerController.js" />
+    <Content Include="_client\scripts\src\controllers\imageGridController.js" />
+    <Content Include="_client\scripts\src\controllers\jobListingController.js" />
+    <Content Include="_client\scripts\src\controllers\timelineController.js" />
+    <Content Include="_client\scripts\src\controllers\videoController.js" />
+    <Content Include="_client\scripts\src\controllers\_exampleController.js" />
+    <Content Include="_client\scripts\src\mixins\audioMixin.js" />
+    <Content Include="_client\scripts\src\mixins\containerViewMixin.js" />
+    <Content Include="_client\scripts\src\mixins\expanderMixin.js" />
+    <Content Include="_client\scripts\src\mixins\fragmentLoaderMixin.js" />
+    <Content Include="_client\scripts\src\mixins\skewMixin.js" />
+    <Content Include="_client\scripts\src\mixins\videoMixin.js" />
+    <Content Include="_client\scripts\src\models\angleCarouselItemModel.js" />
+    <Content Include="_client\scripts\src\models\articleGridItemModel.js" />
+    <Content Include="_client\scripts\src\models\audioModel.js" />
+    <Content Include="_client\scripts\src\models\avatarModel.js" />
+    <Content Include="_client\scripts\src\models\brandModel.js" />
+    <Content Include="_client\scripts\src\models\filterModel.js" />
+    <Content Include="_client\scripts\src\models\formFieldsetModel.js" />
+    <Content Include="_client\scripts\src\models\jobListingItemModel.js" />
+    <Content Include="_client\scripts\src\models\searchFilterItemModel.js" />
+    <Content Include="_client\scripts\src\models\searchResultItemModel.js" />
+    <Content Include="_client\scripts\src\models\videoModel.js" />
+    <Content Include="_client\scripts\src\models\_exampleModel.js" />
+    <Content Include="_client\scripts\src\modules\analytics.js" />
+    <Content Include="_client\scripts\src\modules\animate.js" />
+    <Content Include="_client\scripts\src\modules\audio.js" />
+    <Content Include="_client\scripts\src\modules\breakpoints.js" />
+    <Content Include="_client\scripts\src\modules\eventDispatcher.js" />
+    <Content Include="_client\scripts\src\modules\form.js" />
+    <Content Include="_client\scripts\src\modules\fullscreen.js" />
+    <Content Include="_client\scripts\src\modules\globalDispatcher.js" />
+    <Content Include="_client\scripts\src\modules\handlebars-helpers.js" />
+    <Content Include="_client\scripts\src\modules\jitRequire.js" />
+    <Content Include="_client\scripts\src\modules\performance.js" />
+    <Content Include="_client\scripts\src\modules\polyAnimator.js" />
+    <Content Include="_client\scripts\src\modules\responsiveImage.js" />
+    <Content Include="_client\scripts\src\modules\scrollAnchor.js" />
+    <Content Include="_client\scripts\src\modules\svgHelper.js" />
+    <Content Include="_client\scripts\src\modules\validator.js" />
+    <Content Include="_client\scripts\src\modules\video.js" />
+    <Content Include="_client\scripts\src\modules\viewCycler.js" />
+    <Content Include="_client\scripts\src\modules\_exampleModule.js" />
+    <Content Include="_client\scripts\src\polyfills.js" />
+    <Content Include="_client\scripts\src\views\angleCarouselControlsView.js" />
+    <Content Include="_client\scripts\src\views\angleCarouselControlView.js" />
+    <Content Include="_client\scripts\src\views\angleCarouselSlideView.js" />
+    <Content Include="_client\scripts\src\views\angleCarouselTextView.js" />
+    <Content Include="_client\scripts\src\views\angleCarouselView.js" />
+    <Content Include="_client\scripts\src\views\articleGridBlogItemView.js" />
+    <Content Include="_client\scripts\src\views\articleGridItemView.js" />
+    <Content Include="_client\scripts\src\views\articleGridTweetItemView.js" />
+    <Content Include="_client\scripts\src\views\articleGridView.js" />
+    <Content Include="_client\scripts\src\views\avatarView.js" />
+    <Content Include="_client\scripts\src\views\brandAudioView.js" />
+    <Content Include="_client\scripts\src\views\BrandControlMediaView.js" />
+    <Content Include="_client\scripts\src\views\brandControlView.js" />
+    <Content Include="_client\scripts\src\views\brandDetailView.js" />
+    <Content Include="_client\scripts\src\views\brandOverlayView.js" />
+    <Content Include="_client\scripts\src\views\brandView.js" />
+    <Content Include="_client\scripts\src\views\cookieBarView.js" />
+    <Content Include="_client\scripts\src\views\deviceShowcaseView.js" />
+    <Content Include="_client\scripts\src\views\disqusCommentCount.js" />
+    <Content Include="_client\scripts\src\views\fileView.js" />
+    <Content Include="_client\scripts\src\views\filterView.js" />
+    <Content Include="_client\scripts\src\views\formFieldsetView.js" />
+    <Content Include="_client\scripts\src\views\formNavView.js" />
+    <Content Include="_client\scripts\src\views\formSelectorView.js" />
+    <Content Include="_client\scripts\src\views\formView.js" />
+    <Content Include="_client\scripts\src\views\googleTagView.js" />
+    <Content Include="_client\scripts\src\views\gridArticleView.js" />
+    <Content Include="_client\scripts\src\views\gridContentView.js" />
+    <Content Include="_client\scripts\src\views\gridExpanderView.js" />
+    <Content Include="_client\scripts\src\views\gridModalView.js" />
+    <Content Include="_client\scripts\src\views\gridSliderView.js" />
+    <Content Include="_client\scripts\src\views\hexLoaderView.js" />
+    <Content Include="_client\scripts\src\views\imageGalleryCarouselView.js" />
+    <Content Include="_client\scripts\src\views\imageGridItemView.js" />
+    <Content Include="_client\scripts\src\views\imageGridView.js" />
+    <Content Include="_client\scripts\src\views\jobListingItemView.js" />
+    <Content Include="_client\scripts\src\views\jobListingView.js" />
+    <Content Include="_client\scripts\src\views\keyboardInputView.js" />
+    <Content Include="_client\scripts\src\views\mediaControlsSeekView.js" />
+    <Content Include="_client\scripts\src\views\mediaControlsView.js" />
+    <Content Include="_client\scripts\src\views\mediaControlsVolumeView.js" />
+    <Content Include="_client\scripts\src\views\menuView.js" />
+    <Content Include="_client\scripts\src\views\navigationDesktopView.js" />
+    <Content Include="_client\scripts\src\views\navigationTrayView.js" />
+    <Content Include="_client\scripts\src\views\navigationView.js" />
+    <Content Include="_client\scripts\src\views\relatedArticlesCarouselView.js" />
+    <Content Include="_client\scripts\src\views\scrollTopView.js" />
+    <Content Include="_client\scripts\src\views\searchOverlayResultsView.js" />
+    <Content Include="_client\scripts\src\views\searchOverlayTriggerView.js" />
+    <Content Include="_client\scripts\src\views\searchOverlayView.js" />
+    <Content Include="_client\scripts\src\views\searchView.js" />
+    <Content Include="_client\scripts\src\views\selectView.js" />
+    <Content Include="_client\scripts\src\views\showMoreView.js" />
+    <Content Include="_client\scripts\src\views\skewGradientView.js" />
+    <Content Include="_client\scripts\src\views\skewImageView.js" />
+    <Content Include="_client\scripts\src\views\testimonialCarouselView.js" />
+    <Content Include="_client\scripts\src\views\timelineView.js" />
+    <Content Include="_client\scripts\src\views\tweetItemView.js" />
+    <Content Include="_client\scripts\src\views\tweetView.js" />
+    <Content Include="_client\scripts\src\views\videoControlsView.js" />
+    <Content Include="_client\scripts\src\views\videoTouchControlsView.js" />
+    <Content Include="_client\scripts\src\views\videoView.js" />
+    <Content Include="_client\scripts\src\views\_exampleView.js" />
+    <Content Include="_client\scripts\templates\angle-carousel-controls.js" />
+    <Content Include="_client\scripts\templates\angle-carousel-pagination.js" />
+    <Content Include="_client\scripts\templates\angle-carousel-slide.js" />
+    <Content Include="_client\scripts\templates\angle-carousel-svg.js" />
+    <Content Include="_client\scripts\templates\angle-carousel-text.js" />
+    <Content Include="_client\scripts\templates\article-summary-blog-grid-item.js" />
+    <Content Include="_client\scripts\templates\article-summary-grid-item.js" />
+    <Content Include="_client\scripts\templates\brand-audio.js" />
+    <Content Include="_client\scripts\templates\brand-controls.js" />
+    <Content Include="_client\scripts\templates\brand-graphs.js" />
+    <Content Include="_client\scripts\templates\expanding-grid-error.js" />
+    <Content Include="_client\scripts\templates\expanding-grid-modal.js" />
+    <Content Include="_client\scripts\templates\file.js" />
+    <Content Include="_client\scripts\templates\form-complete.js" />
+    <Content Include="_client\scripts\templates\form-continue.js" />
+    <Content Include="_client\scripts\templates\form-error.js" />
+    <Content Include="_client\scripts\templates\form-nav.js" />
+    <Content Include="_client\scripts\templates\hex-loader-spinner.js" />
+    <Content Include="_client\scripts\templates\image-grid-landscape-landscape-portrait.js" />
+    <Content Include="_client\scripts\templates\image-grid-landscape-landscape.js" />
+    <Content Include="_client\scripts\templates\image-grid-landscape.js" />
+    <Content Include="_client\scripts\templates\image-grid-portrait-landscape-landscape.js" />
+    <Content Include="_client\scripts\templates\image-grid-portrait-portrait.js" />
+    <Content Include="_client\scripts\templates\media-audio-controls.js" />
+    <Content Include="_client\scripts\templates\media-video-controls.js" />
+    <Content Include="_client\scripts\templates\scroll-top.js" />
+    <Content Include="_client\scripts\templates\search-overlay-no-results.js" />
+    <Content Include="_client\scripts\templates\search-overlay-results-item.js" />
+    <Content Include="_client\scripts\templates\search-overlay-show-more.js" />
+    <Content Include="_client\scripts\templates\search-overlay.js" />
+    <Content Include="_client\scripts\templates\select.js" />
+    <Content Include="_client\scripts\templates\timeline-skew.js" />
+    <Content Include="_client\scripts\templates\tweet-grid-item.js" />
+    <Content Include="_client\scripts\templates\_image-grid-landscape-image-full.js" />
+    <Content Include="_client\scripts\templates\_image-grid-landscape-image.js" />
+    <Content Include="_client\scripts\templates\_image-grid-portrait-image.js" />
+    <Content Include="_client\scripts\templates\_image-grid-portrait-large.js" />
+    <Content Include="_client\scripts\templates\_show-more.js" />
+    <Content Include="_client\scripts\templates\_timeline.js" />
+    <Content Include="_client\scripts\templates\_tweet-item-partial.js" />
+    <Content Include="_client\scripts\workers\avatar-worker.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="js\" />
+    <Folder Include="Static\compiled\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>19647</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:19647/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

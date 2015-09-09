@@ -1,0 +1,551 @@
+// Components - Forms
+// -------------------------
+
+fieldset {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+@mixin dark-branding {
+	border-color: colour(grey, filter-form-select);
+	color: colour(grey, filter-form-select);
+}
+
+.frm-select-wrap, .frm-file-wrap {
+	display: block;
+	position: relative;
+	z-index: 1;
+
+	&__icon {
+		position: absolute;
+		right: rem(20px);
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 2;
+		color: colour(orange);
+	}
+
+	@include respond-to-min(small) {
+		display: inline-block;
+	}
+}
+
+.frm-file {
+	@include btn;
+	@include responsive-type-size(text--base);
+	padding: rem($btn-act-padding);
+
+	&__augmented {
+		max-width: rem(180px);
+	}
+}
+
+.frm-select {
+	$width: 230px;
+
+	position: relative;
+
+	@include btn;
+
+	min-width: rem($width);
+	padding: rem($btn-act-padding);
+	z-index: 100;
+
+	&--augmented {
+		padding: 0;
+	}
+
+	&__toggle {
+		background-color: transparent;
+		border: 0;
+		padding: rem($btn-act-padding);
+		text-align: left;
+		width: 100%;
+
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.icon {
+		position: absolute;
+		right: rem(20px);
+	}
+
+	&__region--active & {
+
+		&__list {
+			display: block;
+
+			&-option {
+				color: colour(grey, base-font);
+
+				@include active ('&--selected') {
+					background-color: colour(orange);
+					color: colour(white);
+				}
+			}
+		}
+	}
+
+	&__list {
+
+		@include btn;
+
+		background-color: colour(white);
+		display: none;
+		left: -1px;
+		right: -1px;
+		margin: 0;
+		padding: 0;
+		position: absolute;
+		top: -1px;
+		text-align: left;
+		box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.1);
+
+		&-item {
+			list-style: none;
+		}
+
+		&-option {
+			color: colour(grey, base-font);
+			background-color:colour(white);
+			display: block;
+			padding: rem($btn-padding);
+			text-decoration: none;
+
+			@include active ('&--selected'){
+				background-color: colour(orange);
+				color: colour(white);
+			}
+
+			@at-root .editorial li &:hover,
+			.editorial li &:focus,
+			.editorial li &:active,
+			.editorial li &--selected{
+				background-color: colour(orange);
+				color: colour(white);
+				text-decoration: none;
+				outline: none;
+			}
+		}
+
+		&--visible {
+			display: block;
+		}
+
+		@at-root .editorial & {
+			margin: 0;
+
+			li{
+				margin-bottom: 0;
+
+				a:hover{
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}
+
+@mixin step-count($var) {
+	&:before {
+		@include responsive-type-size(text--base);
+		content: 'Step 0' counter(#{$var});
+		display:block;
+		text-transform:uppercase;
+		color:colour(grey, lighter);
+	}
+}
+
+.frm {
+	position:relative;
+	padding: rem(0 $gutter);
+	counter-reset: step-index;
+
+	@include respond-to-min(medium) {
+		padding: 0;
+	}
+
+	&__small {
+		color: colour(grey, lighter);
+		display: block;
+		margin-top: rem(6px);
+	}
+
+	&__step {
+		width: 100%;
+		border: none;
+		counter-increment: step-index;
+
+		&-title {
+			@include responsive-type-size(text--large);
+			@include get-layout-spacing(small-connected, margin-bottom);
+			@include step-count(step-index);
+
+			.js & {
+				display: none;
+			}
+		}
+	}
+
+	&__item {
+		@include get-adjusted-layout-spacing(small-connected, text--medium, margin-bottom);
+
+		&:last-of-type {
+			@include get-adjusted-layout-spacing(large-connected, text--medium, margin-bottom);
+		}
+
+		&--invalid {
+			color: colour(red);
+			display: block;
+
+			.frm-checkbox {
+				color: colour(grey);
+			}
+		}
+
+		&--inactive {
+			color: colour(orange);
+			.js.no-ie.placeholder & .frm__label {
+				opacity: 0;
+			}
+		}
+
+		&--complete {
+			color: inherit;
+		}
+	}
+
+    &__label {
+        display: block;
+        color: colour(grey, lighter);
+        cursor: text;
+        opacity: 1;
+        transition: opacity ease-in-out map-get($transitions, links);
+    }
+
+	&__input {
+		@include responsive-type-size(text--large);
+		display: block;
+		width: 100%;
+		border: none;
+		line-height: 1;
+		color: colour(grey, base);
+		padding: 0;
+		margin: 0;
+
+		&::placeholder {
+			color:colour(grey, lighter);
+
+			.ie & {
+				color: transparent;
+			}
+		}
+	}
+
+	&__error {
+		display: block;
+		color: colour(red);
+	}
+}
+
+.frm-nav {
+	display: block;
+	white-space: nowrap;
+
+    @include get-layout-spacing(small-connected, margin-bottom, margin-top);
+
+	&__items{
+		counter-reset: stepIdx;
+		padding: 0;
+		margin: 0;
+        text-align: center;
+
+        @include respond-to-min(medium) {
+            text-align: left;
+        }
+	}
+
+	&__item {
+		display: inline-block;
+		list-style: none;
+		position: relative;
+		counter-increment: stepIdx;
+
+		&:after {
+			content: "";
+            display: inline-block;
+			width: 1px;
+			height: rem(14px);
+			background-color: colour(grey, lightest);
+			transform: rotate(15deg);
+			position: relative;
+            margin: rem(16px 20px);
+
+			vertical-align: bottom;
+
+			@include respond-to-min(medium){
+				display: inline-block;
+                height: rem(32px);
+                margin: rem(0 20px);
+			}
+		}
+
+		&:last-of-type:after {
+			content: none;
+		}
+
+        &:last-of-type:after {
+            content: none;
+        }
+	}
+
+	&__step {
+		border: none;
+		background-color: transparent;
+		padding: 0;
+
+		&-count {
+			color: colour(orange);
+			font-size: rem(21px);
+			display: block;
+			text-transform: uppercase;
+			text-align: left;
+            padding: rem(10px);
+
+            @include respond-to-min(medium) {
+                padding: 0;
+                color: colour(grey, lighter);
+                font-size: rem(12px);
+            }
+		}
+
+		&-label {
+			display: none;
+			margin-right: rem(6px);
+
+			@include respond-to-min(medium) {
+				display: inline-block;
+			}
+		}
+
+		@include active {
+
+			&-title {
+				color: colour(grey);
+			}
+		}
+
+		&-title {
+			@include responsive-type-size(text--large);
+			display: none;
+			color: colour(orange);
+
+			@include respond-to-min(medium) {
+				display: block;
+			}
+		}
+
+		&[disabled] & {
+
+			&-title,
+            &-count {
+				color: colour(grey, lighter);
+			}
+		}
+
+		&--active &, &--active[disabled] & {
+
+			&-title {
+				color: colour(grey, base);
+			}
+
+            &-count {
+                color: colour(grey, base);
+                @include respond-to-min(medium) {
+                    color: colour(grey, lighter);
+                }
+            }
+		}
+	}
+}
+
+.frm-selector {
+
+	&__title {
+		@include responsive-type-size(text--xlarge);
+		@include get-adjusted-layout-spacing(small-connected, text--xlarge, padding-bottom);
+		display: block;
+		text-align: center;
+		color: colour(grey, base);
+	}
+
+	&__status{
+
+		& a{
+			@include active {
+				cursor: pointer;
+				text-decoration: none;
+			}
+		}
+	}
+
+	&__expander {
+		position: relative;
+	}
+
+	&__content {
+
+		.js & {
+			min-height: rem(200px);
+		}
+	}
+
+	&__header {
+		display: block;
+		width: 100%;
+		text-align: center;
+	}
+
+	&-contact {
+		position: relative;
+		z-index: 9999;
+	}
+
+	&__container {
+		display: block;
+		text-align: center;
+		padding: rem(0 $gutter);
+	}
+
+	&__anchor {
+		text-decoration: none;
+		display: block;
+		padding: rem(0 $gutter);
+	}
+
+	&__link {
+		@include link-base;
+		@include link-alt;
+		display: block;
+	}
+}
+
+.frm-checkbox {
+	display: inline-block;
+	position: relative;
+	cursor: pointer;
+	margin-top: $gutter-half;
+	margin-right: $gutter;
+	vertical-align: middle;
+
+	&__radio-tick {
+		display: inline-block;
+		width: rem(16px);
+		height: rem(16px);
+		border-radius: 100%;
+		border: 1px solid colour(orange);
+		margin-right: rem(5px);
+		position: relative;
+		vertical-align: middle;
+
+		&-checked{
+			display: none;
+			position: absolute;
+			width: rem(8px);
+			height: rem(8px);
+			border-radius: 100%;
+			background: colour(orange);
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+
+	&__tick {
+		color: colour(orange);
+		margin-bottom: rem(4px);
+	}
+
+
+
+	&__input {
+		position: absolute;
+		top: 0;
+		right: 0;
+		background: none;
+		z-index: -1;
+
+		&:checked + .frm-checkbox__tick {
+			&:before{
+			  content:"\f109";
+			}
+		}
+
+		&:checked + .frm-checkbox__radio-tick .frm-checkbox__radio-tick-checked{
+			display: block;
+		}
+	}
+}
+
+.apply-vacancy {
+
+	&__wrapper {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	&__item {
+		flex-basis: 100%;
+		border-right: 1px solid colour(grey, lightest);
+
+		@include get-layout-spacing(medium-connected, padding-left, padding-right);
+
+		margin-bottom: rem(30px);
+
+		@include respond-to-min(medium) {
+			margin-bottom: 0;
+			flex-basis: 33.333%;
+			max-width: 33.333%;
+		}
+
+		&:last-of-type{
+			border-right: none;
+		}
+
+
+		&-inner {
+			text-align: center;
+		}
+	}
+
+	&__link {
+		@include link-base;
+		@include link-alt;
+		display: block;
+		text-align: center;
+	}
+
+	&__title {
+		@include get-adjusted-layout-spacing(small-connected, text--xlarge, margin-bottom);
+	}
+
+	&__text {
+		@include get-adjusted-layout-spacing(small-connected, text--base, margin-bottom);
+	}
+}
+
+.container-submit-form-button-no-js{
+	display: none;
+    margin-top: 5px;
+
+	.no-js &{
+		display: block;
+	}
+}
+
+.error-container {
+	margin: rem(0 $gutter);
+}

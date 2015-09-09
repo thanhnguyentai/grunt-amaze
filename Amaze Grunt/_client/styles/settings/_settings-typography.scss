@@ -1,0 +1,88 @@
+// Settings - Typography
+// -------------------------
+
+$base-font-size: 16px;
+$base-line-height: 1.5;
+
+$fonts: (
+	'AktivGrotesk': (
+		file: 'AktivGrotesk_Lt-webfont',
+		weight: normal
+	)
+);
+
+$font-headings: 'AktivGrotesk', sans-serif;
+$font-body: 'AktivGrotesk', sans-serif;
+$font-base-icons: 'icons';
+
+$base-icons: (
+
+);
+
+// NOTES: 1st level = font groups / 2nd level = breakpoints
+$type-sizing: (
+    'text--base': (
+        small: (
+			font-size: 14px,
+			line-height: 20px
+		),
+        medium: (
+            font-size: 16px,
+			line-height: 24px
+        )
+    ),
+	'text--small': (
+		small: (
+			font-size: 11px,
+			line-height: 15px
+		),
+        medium: (
+            font-size: 12px,
+            line-height: 18px
+        )
+	),
+	'text--medium': (
+		small: (
+			font-size: 18px,
+			line-height: 21px
+		),
+        medium: (
+            font-size: 21px,
+			line-height: 28px
+        )
+	),
+	'text--large': (
+		small: (
+			font-size: 21px,
+			line-height: 26px
+		),
+        medium: (
+            font-size: 28px,
+			line-height: 34px
+        )
+	),
+	'text--xlarge': (
+		small: (
+			font-size: 25px,
+			line-height: 30px
+		),
+        medium: (
+            font-size: 40px,
+			line-height: 50px
+        )
+	),
+	'text--xxlarge': (
+		small: (
+			font-size: 35px,
+			line-height: 40px
+		),
+		medium: (
+			font-size: 50px,
+			line-height: 60px
+		),
+        xlarge: (
+            font-size: 60px,
+			line-height: 70px
+        )
+	)
+);

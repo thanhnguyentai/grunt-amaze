@@ -1,0 +1,30 @@
+// Helpers
+// -------------------------
+
+%flex-image {
+	display: inline-block;
+	max-width: 100%;
+}
+
+%fill-image {
+	display: block;
+	width: 100%;
+}
+
+.flex-image {
+	@extend %flex-image;
+}
+
+.fill-image {
+	@extend %fill-image;
+}
+
+%hidden {
+  position: absolute;
+  left: -9999px;
+  font-size: 0;
+}
+
+.vh {
+    @extend %hidden;
+}

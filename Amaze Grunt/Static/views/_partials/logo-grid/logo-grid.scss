@@ -1,0 +1,34 @@
+// Components - Logo grid
+// -------------------------
+
+.logo-grid {
+
+	&__container {
+		display: block;
+	}
+
+	&__description{
+		text-align: center;
+		padding: rem(0 $gutter);
+		
+		@include respond-to-min(medium){
+			padding: 0;
+		}
+	}
+
+	&__item {
+		position: relative;
+		display: block;
+		width: 100%;
+    	text-align: center;
+
+		@include get-layout-spacing(small-connected, margin-bottom);
+	}
+
+	&__logos {
+		display: inline-block;
+		position: relative;
+		width: 50%;
+		vertical-align: middle;
+	}
+}

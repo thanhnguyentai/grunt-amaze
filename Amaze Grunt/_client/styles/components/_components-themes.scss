@@ -1,0 +1,21 @@
+// Components - Themes
+// -------------------------
+
+@each $theme in map-keys($gradients) {
+    
+    .radial-gradient--#{$theme} {
+        @include radial-gradient-backgrounds(#{$theme});
+    }
+}
+
+.trixel--light {
+    @include trixel-background;
+}
+
+.trixel--dark {
+    @include trixel-background(dark);
+}
+
+.js .theme-solid-orange, .no-js .theme-solid-orange{
+    background-color: colour(orange);
+}

@@ -1,0 +1,297 @@
+define(['vendor/backbone','underscore',
+	'modules/jitRequire',
+	'collections/articleGridItemsCollection', 'models/articleGridItemModel', 'views/articleGridItemView',
+	'views/showMoreView', 'modules/animate', 'views/disqusCommentCount'],
+	function (Backbone, _,
+		jitRequire,
+		ArticleGridItemsCollection, ArticleGridItemModel, ArticleGridItemView,
+		ShowMoreView, animate, commentCount) {
+
+	'use strict';
+
+	return Backbone.View.extend({
+		
+		initialize: function (opts) {
+
+			this.options = _.extend({}, opts);
+			
+			var items = this.createGridItemViewsAndModels(this.$el);
+
+			this.itemModels = new ArticleGridItemsCollection(_.pluck(items, 'model'));            
+			this.itemViews = _.pluck(items, 'view');
+
+			this.$articleGrid = this.$el.find('[data-article-grid]');
+
+			this.$noItemsEl = $(this.options.tmplNoItems());
+			this.$showMoreEl = $(this.options.tmplShowMore());
+
+			this.showMoreTags = this.$articleGrid.data('article-grid-show-more-tags');
+			this.showMoreUrl = this.$articleGrid.data('article-grid-show-more-url');
+
+			this.initialiseShowMore();
+			this.processModelChange(this.model);
+
+			this.addEvents();
+		},  
+
+		addEvents: function () {
+			
+			this.listenTo(this.model, 'change', this.processModelChange);
+			this.listenTo(this.$showMoreView, 'dataLoaded.ShowMore', this.processShowMoreData);
+		},
+		
+		render: function (itemCount) {
+
+			if (itemCount) {
+				this.$noItemsEl.detach();
+			}
+			else {
+				this.$el.append(this.$noItemsEl);
+			}
+			
+			return $.Deferred().resolve(this);
+		},
+		
+		createGridItemViewsAndModels: function ($elementToSearch) {
+			
+			return $.makeArray($elementToSearch.find('[data-grid-item]')).map(function(el) {
+
+				var $el = $(el),
+					itemModel = new ArticleGridItemModel({
+						id: $el.data('id'),
+						types: $el.data('types').toString().split(','),
+						services: $el.data('services').toString().split(','),
+						year: $el.data('year'),
+						display: $el.data('display'),
+						type: $el.data('type'),
+						visible: true
+					}),
+					itemView = new ArticleGridItemView({
+						el: el,
+						model: itemModel,
+						rendered: true
+					});
+
+				return {
+					model: itemModel,
+					view: itemView
+				};
+
+			}.bind(this));
+		},
+
+		modelEmpty: function (model) {
+			
+			return (model.get('types') == '' && model.get('services') == '' && model.get('year') == '');
+		},
+
+		processModelChange: function(model) {
+
+			var itemCount = this.setModels(model);
+			
+			this.renderSubViews(this.itemViews, itemCount).bind(this)();
+			this.configureShowMore(model);
+			this.displayItems.bind(this)();
+
+			if (itemCount === 0 && this.$showMoreView.visible()) {
+				this.$showMoreView.getData();
+				return;
+			}
+
+			this.render(itemCount);
+		},
+
+		hideItems: function() {
+
+			this.$el.css({
+				opacity: 0
+			});
+		},
+
+		displayItems: function() {
+
+			this.$articleGrid.addClass('article-grid__flex--show');
+			
+			return animate(this.$el, {
+				opacity: 1
+			},
+			{
+				display: 'block',
+				duration: 500
+			});
+		},
+
+		renderSubViews: function(views, itemCount) {
+			
+			return function() {
+
+				var activeCounter = 0;
+				var slotCount = 2;
+
+				views.forEach(function(view, idx) {
+
+					if (!view.visible()) {
+					    view.render();
+						return;
+					}
+
+					activeCounter++;
+
+					var viewDesiredDisplay = view.desiredDisplay();
+
+					if (viewDesiredDisplay === 'half') {
+						slotCount -= 1;
+					} else {
+						slotCount -= 2;
+					}
+
+					if (slotCount < 0) {
+						view.resizeToHalf();
+					}
+
+					if ((idx === views.length - 1 || activeCounter === itemCount)
+						&& viewDesiredDisplay === 'half' && slotCount > 0) {
+						
+						view.resizeToFull();
+					}
+
+					if (slotCount <= 0) {
+						slotCount = 2;
+					}
+
+					view.render();
+				});
+			}
+		},
+
+		setModels: function (model) {
+			return this.itemModels.setFilters(model.get('types'), model.get('services'), model.get('year'));
+		},
+
+		initialiseShowMore: function () {
+
+			this.hidePagination();
+			
+			this.$showMoreView = new ShowMoreView({
+				el: this.$showMoreEl
+			});
+
+			if (!this.showMoreTags || !this.showMoreUrl) {
+				return;
+			}
+
+			this.$el.append(this.$showMoreView.$el);
+		},
+
+		hidePagination: function() {
+
+			this.$el.find('[data-article-grid-pagination]').remove();
+		},
+
+		configureShowMore: function(model) {
+
+			if (!this.showMoreTags) {
+				this.$showMoreView.hide();
+				return;
+			}
+
+            var arrAdditionalData = this.showMoreTags.toString().split(',');
+			
+            if (!this.modelEmpty(model)) {
+                
+                var without = _.without(arrAdditionalData,
+					model.get('types'),
+					model.get('services'),
+					model.get('year')).length;
+<<<<<<< HEAD
+                
+                var containGroup = true;
+                
+                if (!!model.get('types') && model.get('types').toString().length > 0) {
+                    if (!!model.get('services') && model.get('services').toString().length > 0) {
+                        containGroup = _.contains(arrAdditionalData, model.get('types').toString() + "-" + model.get('services').toString());
+                        if (!!model.get('year') && model.get('year').toString().length > 0) {
+                            containGroup = _.contains(arrAdditionalData, model.get('types').toString() + "-" + model.get('services').toString() + "-" + model.get('year').toString().length);
+                        }
+                    } else if (!!model.get('year') && model.get('year').toString().length > 0) {
+                        containGroup = _.contains(arrAdditionalData, model.get('types').toString() + "-" + model.get('year').toString().length);
+                    }
+                } else if (!!model.get('services') && model.get('services').toString().length > 0) {
+                    if (!!model.get('year') && model.get('year').toString().length > 0) {
+                        containGroup = _.contains(arrAdditionalData, model.get('services').toString() + "-" + model.get('year').toString().length);
+                    }
+                }
+
+                // Check to see if we need to show 'show more'
+                if (without >= arrAdditionalData.length || !containGroup) {
+                    this.$showMoreView.hide();
+                    return;
+                }
+            }
+=======
+
+				if (without >= arrAdditionalData.length) {
+					this.$showMoreView.hide();
+					return;
+				}
+			}
+>>>>>>> 5d4fc046ca9227c27c0c7f22bdc56f380ce6c05a
+
+			this.$showMoreView.show();
+
+			var replaceMap = {
+				"{exclude}": this.itemModels.pluck('id').join('~'),
+				"{types}": model.get('types'),
+				"{services}": model.get('services'),
+				"{year}": model.get('year')
+			};
+
+			var regEx = new RegExp(Object.keys(replaceMap).join("|"), "gi");
+
+			var url = this.showMoreUrl.replace(regEx, function(matched){
+				return replaceMap[matched];
+			});
+			
+			this.$showMoreView.setUrl(url);
+		},
+
+		processShowMoreData: function (jsonData) {
+			
+			var items = jsonData.items.map(function(item) {
+
+				var itemModel = new ArticleGridItemModel(item),
+						itemView = new ArticleGridItemView({
+							model: itemModel,
+							rendered: false
+						});
+
+					return {
+						model: itemModel,
+						view: itemView
+					};
+			});
+
+			this.itemModels.add(_.pluck(items, 'model'));
+			this.itemViews = _.union(this.itemViews, _.pluck(items, 'view'));
+			
+			this.showMoreTags = jsonData.showMoreTags;
+			this.showMoreUrl = jsonData.showMoreUrl;
+
+			this.$articleGrid.append(items.map(function(item) { return item.view.el; }));
+
+			var itemCount = this.setModels(this.model);
+			
+			this.renderSubViews(_.pluck(items, 'view'), itemCount).bind(this)();
+
+			jitRequire.findDeps(this.$el);
+
+			this.configureShowMore(this.model);
+
+		    this.render(itemCount);
+            
+		    /* load comment count */
+			new commentCount();
+		}
+
+	});
+});

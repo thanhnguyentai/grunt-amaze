@@ -1,0 +1,80 @@
+// Mixins - Utils
+// -------------------------
+
+
+// Functions
+// -------------------------
+
+@function rem($values) {
+
+	@if type-of($values) == "list" {
+
+		$rems: ();
+
+		@each $value in $values {
+			$rems: append($rems, rem($value));
+		}
+
+		@return $rems;
+	}
+
+	@if type-of($values) == "number" {
+
+		@if $values == 0 {
+			@return $values;
+		}
+
+		@if unit($values) == px {
+			@return ($values / $base-font-size) * 1rem;
+		}
+	}
+
+	@return $values;
+}
+
+// Mixins
+// -------------------------
+
+@mixin clearfix {
+	*zoom: 1;
+	&:before,
+	&:after {
+		display: table;
+		content: "";
+		line-height: 0;
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+@mixin linear-gradient($direction, $color-stops...) {
+
+	@if is-direction($direction) == false {
+		$color-stops: ($direction, $color-stops);
+		$direction: 180deg;
+	}
+
+	background: nth(nth($color-stops, 1), 1);
+	background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+	background: linear-gradient($direction, $color-stops);
+}
+
+@mixin active($selectors...) {
+
+	.no-touch &:active,
+	&:hover,
+	.no-touch &:focus{
+		@content;
+	}
+
+	$selector-list: ();
+
+	@each $selector in $selectors {
+		$selector-list: append($selector-list, unquote($selector));
+	}
+
+	#{$selector-list} {
+		@content;
+	}
+}

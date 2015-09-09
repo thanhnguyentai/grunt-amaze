@@ -1,0 +1,14 @@
+// Settings - Transitions
+// -------------------------
+
+$transitions: (
+	buttons: 0.3s,
+	video: 0.5s,
+	video-controls: 0.3s,
+	links: 0.3s,
+    expanders: 0.25s,
+	angle-carousel: 0.25s,
+    navigation: 0.5s ease-in-out,
+    header: 0.5s ease-out,
+    scroll-top: 0.35s ease-out
+);

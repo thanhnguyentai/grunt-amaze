@@ -1,0 +1,4 @@
+
+@function get-z-index($name) {
+    @return map-get($z-indexes, $name);
+}

@@ -1,0 +1,27 @@
+// Mixins - Buttons
+// -------------------------
+
+@mixin btn {
+	font-family: $font-body;
+	background-color: transparent;
+	border: 1px solid colour(orange);
+	border-radius: 0;
+	color: colour(orange);
+	cursor: pointer;
+	position: relative;
+	text-decoration: none;
+	transition: color map-get($transitions, buttons);
+	z-index: 1;
+	-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+
+@mixin btn-backing--hover {
+	&:after {
+		left: rem(-15%);
+		width: rem(130%);
+		z-index: -1;
+	}
+}

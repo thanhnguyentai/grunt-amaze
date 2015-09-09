@@ -1,0 +1,85 @@
+
+.article {
+
+    &__pad {
+        padding-left: rem($gutter);
+        padding-right: rem($gutter);
+
+        @include respond-to-min('medium') {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    &__meta,
+    &__role,
+    &__date {
+    	@include get-layout-spacing(small-connected, margin-bottom);
+        text-align: center;
+    }
+
+    &__meta,
+    &__date {
+        color: colour(grey, lighter);
+    }
+
+    &__meta {
+        &-slash {
+            margin: 0 rem(4px);
+        }
+    }
+
+    &__role {
+        margin-bottom: 0 !important;
+        color: colour(grey, light);
+    }
+
+    &__heading {
+        @include get-layout-spacing(small-connected, margin-bottom);
+        text-align: center;
+
+        &--job-detail {
+            margin-bottom: 0 !important;
+        }
+    }
+
+    &__image {
+        @include get-layout-spacing(small-connected, margin-top);
+        @include get-layout-spacing(medium-connected, margin-bottom);
+
+        picture img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    &__cta {
+    	@include get-layout-spacing(small-connected, margin-top);
+        text-align: center;
+    }
+
+    &__social {
+        @include get-layout-spacing(small-connected, margin-top);
+        @include get-layout-spacing(large-connected, padding-top);
+        position: relative;
+
+        &:before {
+            content: '';
+            display: block;
+            width: 10%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 1px;
+            background-color: colour(grey, lightest);
+        }
+
+        &-share {
+            text-align: right;
+        }
+        // needed so that view and comment icons are ligned up with social share icons which are much bigger
+        .activity-icons {
+            margin-top: rem(16px);
+        }
+    }
+}

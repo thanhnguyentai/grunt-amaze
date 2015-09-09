@@ -1,0 +1,46 @@
+// Mixins - Media
+// -------------------------
+
+
+// Functions
+// -------------------------
+
+@function get-breakpoint-width($width) {
+	@if type-of($width) != "number" {
+		@return map-get($breakpoints, $width);
+	}
+
+	@return $width;
+}
+
+
+// Mixins
+// -------------------------
+
+@mixin respond-to-min($width) {
+
+	$width: get-breakpoint-width($width);
+	@media only screen and (min-width: rem($width))  { @content; }
+}
+
+@mixin respond-to-max($width) {
+
+	$width: get-breakpoint-width($width);
+	@media only screen and (max-width: rem($width - 1px))  { @content; }
+}
+
+@mixin respond-to-min-max($min-width, $max-width) {
+
+	$min-width: get-breakpoint-width($min-width);
+	$max-width: get-breakpoint-width($max-width);
+
+	@media only screen and (min-width: rem($min-width)) and (max-width: rem($max-width))   { @content; }
+}
+
+@mixin respond-to-res($dp: 2, $res:192dppx) {
+  @media only screen and (-webkit-min-device-pixel-ratio: $dp), (min-resolution: $res) { @content; }
+}
+
+@mixin respond-to-orientation($orientation) {
+  @media only screen and (orientation: $orientation) { @content; }
+}

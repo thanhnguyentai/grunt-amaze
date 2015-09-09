@@ -1,0 +1,60 @@
+// Mixins - Layout
+// -------------------------
+
+@function get-layout-spacing($spacing, $breakpoint) {
+    @return rem(map-get(map-get($layout-spacing, $spacing), $breakpoint));
+}
+
+@function get-adjusted-layout-spacing($spacing, $text-size, $breakpoint) {
+
+    $spacing: get-layout-spacing($spacing, $breakpoint);
+    $difference: get-font-size-line-height-difference($text-size, $breakpoint);
+
+    @return $spacing - $difference;
+}
+
+@mixin get-adjusted-layout-spacing($spacing, $text-size, $properties...) {
+
+	@each $property in $properties {
+    #{$property}: get-adjusted-layout-spacing($spacing, $text-size, small);
+
+		@each $key, $item in map-get($layout-spacing, $spacing) {
+
+			@if $key != small and map-has-key($breakpoints, $key) {
+      	@include respond-to-min($key) {
+      		#{$property}: get-adjusted-layout-spacing($spacing, $text-size, $key);
+        }
+      }
+  	}
+	}
+}
+
+@mixin get-layout-spacing($spacing, $properties...) {
+
+	@each $property in $properties {
+    #{$property}: get-layout-spacing($spacing, small);
+
+		@each $key, $item in map-get($layout-spacing, $spacing) {
+
+      @if $key != small and map-has-key($breakpoints, $key) {
+        @include respond-to-min($key) {
+          #{$property}: get-layout-spacing($spacing, $key);
+        }
+      }
+  	}
+	}
+}
+
+// preserve 3d - set this on parent element
+@mixin preserve3d {
+  transform-style: preserve-3d;
+}
+
+/* vertical&Horizontally align anything please do the above first */
+@mixin vertical-align {
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

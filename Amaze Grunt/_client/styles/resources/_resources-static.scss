@@ -1,0 +1,136 @@
+// Resources - Static
+// Additional styles for the static pages
+// -------------------------
+
+.static__hidden {
+
+    display: none;
+
+    @include respond-to-max($breakpoint-medium - 1px) {
+
+        &--show-at-xsmall,
+        &--show-at-small {
+            display: block;
+        }
+    }
+
+    @include respond-to-min-max($breakpoint-medium, $breakpoint-large - 1px) {
+
+        &--show-at-medium {
+            display: block;
+        }
+    }
+
+    @include respond-to-min($breakpoint-large) {
+
+        &--show-at-large,
+        &--show-at-xlarge,
+        &--show-at-xxlarge {
+            display: block;
+        }
+    }
+}
+
+.static {
+
+	&__back {
+		display: block;
+		position: relative;
+		z-index: 100;
+	}
+
+    &__section {
+        @include get-layout-spacing(small, margin-bottom, padding-bottom);
+        border-bottom: 2px solid colour(grey, lighter);
+    }
+
+    &__heading, &__sub-heading {
+        @include get-layout-spacing(medium-connected, margin-bottom);
+        text-decoration: underline;
+    }
+
+    &__sub-heading {
+		border-top: 2px solid colour(orange);
+		@include get-layout-spacing(medium-connected, padding-top);
+    }
+
+    &__layout-grid {
+        padding: 10px;
+        background-color: #e5e5e5;
+    }
+
+    &__layout-grid-item {
+        min-height: 100px;
+        margin-bottom: 30px;
+        background-color: #cecece;
+    }
+
+    &__spacing-block {
+        margin-bottom: 20px;
+        background: #65676c;
+        color: #fff;
+        text-align: center;
+        position: relative;
+
+        span {
+            display: block;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        &--large {
+            @include get-layout-spacing(large, height);
+        }
+
+        &--small {
+        	@include get-layout-spacing(small, height);
+        }
+
+        &--large-connected {
+            @include get-layout-spacing(large-connected, height);
+        }
+
+        &--medium-connected {
+            @include get-layout-spacing(medium-connected, height);
+        }
+
+        &--small-connected {
+            @include get-layout-spacing(small-connected, height);
+        }
+    }
+
+
+    &__gradient-block {
+        position: relative;
+    }
+
+
+    &__flex-container {
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-content: stretch;
+        align-items: stretch;
+
+        margin-left: rem(-$gutter);
+    }
+
+    &__flex-item-half {
+        flex: 1 0 50%;
+        align-self: auto;
+        order: 0;
+
+        max-width: 50%; // Get IE on board
+
+
+        padding-left: rem($gutter);
+        height: 300px;
+
+        @include respond-to-min(medium) {
+            height: 500px;
+        }
+    }
+}

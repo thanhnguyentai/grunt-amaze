@@ -1,0 +1,93 @@
+// Settings - Colours
+// -------------------------
+
+$colours: (
+    black: (
+		base: #000
+    ),
+    white: (
+        base: #ffffff
+	),
+    orange: (
+        base: #ff8300,
+        timeline: #eda761,
+        dark: #994f00
+    ),
+    grey: (
+        base: #63656a,
+        light: #898a8e,
+        lighter: #b2b2b2,
+        lightest: #ccc,
+
+        base-font: #63656a,
+        filter-form-select: #63656a,
+        footer-link-hover: #b2b2b2,
+        footer-social-divide: #2f3037,
+        primary-nav-links: #63656a,
+        navigation-tray-primary-bg: #171820,
+        navigation-tray-secondary-bg: #1d222f,
+        timeline-tile: #dad4c8,
+        timeline-bar: #a0998f
+    ),
+    blue: (
+        base: #21232f
+    ),
+    blue-black: (
+        base: #171820,
+        light: #232431,
+        dark: #21232F
+    ),
+    red:(
+        base:#ff0000,
+        light:#ffcccc
+    )
+);
+
+
+$gradients: (
+    brand-1: (
+        base: #ff8300,
+        primary: #d35927,
+        secondary: #a95fce
+    ),
+    brand-2: (
+        base: #ff8300,
+        primary: #ffcc33,
+        secondary: #f365d0
+    ),
+    brand-3: (
+        base: #ff8300,
+        primary: #d35927,
+        secondary: #ffcc33
+    ),
+    dark-1: (
+        base: #21232f,
+        primary: #d35927,
+        secondary: #a95fce
+    ),
+    dark-2: (
+        base: #21232f,
+        primary: #2461aa,
+        secondary: #f365d0
+    ),
+    dark-3: (
+        base: #21232f,
+        primary: #a95fce,
+        secondary: #2461aa
+    ),
+    light-1: (
+        base: #ffffff,
+        primary:#ccccff,
+        secondary:#ffcccc
+    ),
+    light-2: (
+        base: #ffffff,
+        primary:#ffccff,
+        secondary:#ffffcc
+    ),
+    light-3: (
+        base: #ffffff,
+        primary:#ffffcc,
+        secondary:#ffcccc
+    )
+);

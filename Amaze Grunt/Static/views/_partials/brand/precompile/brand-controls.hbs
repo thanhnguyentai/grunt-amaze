@@ -1,0 +1,59 @@
+<div class="brand__controls-inner">
+
+    <div class="brand__control" data-control="living">
+
+        <h2>
+            <button type="button" class="brand__control-toggle" aria-controls="living" aria-expanded="false" data-toggle>Living</button>
+        </h2>
+
+        <div id="living" class="brand__expander" aria-hidden="true" data-expander>
+
+            <div class="brand__expander-inner editorial" data-content="graphs"></div>
+
+        </div>
+
+    </div>
+
+    {{#if watching}}
+    <div class="brand__control brand__control--media" data-control="watching">
+
+        <h2>
+            <button type="button" class="brand__control-toggle" aria-controls="watching" aria-expanded="false" data-toggle>Watching</button>
+        </h2>
+
+        <div id="watching" class="brand__expander" aria-hidden="true" data-expander>
+
+            <div class="brand__expander-inner editorial" data-content>
+
+                {{{watching}}}
+
+            </div>
+
+        </div>
+
+    </div>
+    {{/if}}
+
+    {{#if listening}}
+    <div class="brand__control brand__control--media" data-control="listening">
+
+        <h2>
+            <button type="button" class="brand__control-toggle" aria-controls="listening" aria-expanded="false" data-toggle>Listening</button>
+        </h2>
+
+        <div id="listening" class="brand__expander" aria-hidden="true" data-expander>
+
+            <div class="brand__expander-inner editorial" data-content>
+
+                {{{listening}}}
+
+            </div>
+
+        </div>
+
+    </div>
+    {{/if}}
+
+    <button type="button" class="brand__control-toggle" data-overlay-trigger="brand" aria-controls="overlay">Why a living brand?</button>
+
+</div>
