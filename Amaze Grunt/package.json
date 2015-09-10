@@ -1,11 +1,11 @@
 {
   "name": "Amaze-Grunt",
   "version": "1.0.0",
-  "description": "",
   "author": "",
-  "license": "ISC",
   "dependencies": {},
   "devDependencies": {
-    "grunt": "^0.4.5"
+    "grunt": "^0.4.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-jshint":  "^0.11.3"
   }
 }

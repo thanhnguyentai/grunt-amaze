@@ -2,21 +2,14 @@ module.exports = function (grunt) {
     'use strict';
 
     grunt.initConfig({
-        // task for minify
-        minify: {
-            
-        },
-        
-        // build hbs to js
-        handlerbars: {
+        pkg: grunt.file.readJSON('package.json'),
+        watch: {
             
         }
     });
 
-    grunt.registerTask('install', []);
-
-    grunt.registerTask('build', ['handlerbars']);
+    grunt.registerTask('build', []);
 
     // default task when calling "grunt" => call task build
-    grunt.registerTask('default', ['build']);
+    grunt.registerTask('default', ['build','watch']);
 };
