@@ -5,6 +5,7 @@ node_modules/
 bower_components/
 _client/scripts/lib/bower/
 
+#Visual file
 obj/
 
 # Build html
